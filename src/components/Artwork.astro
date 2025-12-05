@@ -1,0 +1,92 @@
+---
+import { getImage, Image } from 'astro:assets';
+
+interface Props {
+    imagePath: string;
+    altText: string;
+    title: string;
+    date: string;
+}
+const { imagePath, altText, title, date } = Astro.props;
+---
+<div class="artwork">
+    <figure>
+        <Image src={imagePath} alt={altText} />
+        <figcaption>
+            <h3 class="title">{title}</h3>
+            <small class="date">{date}</small>
+        </figcaption>
+    </figure>
+</div>
+
+
+
+<style lang="scss">
+
+    @use "../styles/base/vars" as *;
+
+ 
+    .artwork{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 691px;
+
+        // TODO figure out height responsiveness
+        // min-height: 75vh;
+        // max-height: 80vh;
+
+        margin: 0 auto;
+    }
+    figure{
+        max-width: 100%;
+        width: 100%;
+        max-height: 100%;
+        height: 100%;
+
+        flex-grow: 1;
+        margin-top: 0;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // TODO possibly refactor as class prop for homepage
+        
+        &:hover{
+            figcaption{
+                opacity: 1;
+            }
+        }
+    }
+
+    img{
+        display: block;
+        object-fit: contain;
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        max-width: 100%;
+        background: yellow;
+        flex-grow: 1;
+
+    }
+
+    figcaption{
+        flex-shrink: 1;
+        margin-top: 0.5rem;
+        align-self: flex-start;
+        text-align: left;
+        opacity: 0;
+        transition: all .7s .1s ease-in-out;
+        .title {
+            margin: 0;
+            line-height: 100%;
+        }
+        .date {
+            margin: 0;
+
+        }
+    }
+
+</style>

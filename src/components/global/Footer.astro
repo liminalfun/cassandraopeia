@@ -13,6 +13,9 @@ const year = new Date().getFullYear();
 </footer>
 
 <style lang="scss">
+	@use "../../styles/base/vars" as *;
+	@use "../../styles/base/mixins" as *;
+	@use "../../styles/base/typography" as *;
 
 	footer {
 		max-width: 100%;
@@ -22,6 +25,15 @@ const year = new Date().getFullYear();
 		justify-content: space-between;
 		align-items: baseline;
 		gap: 1rem;
+
+		@media screen and (max-width: 850px){
+			color: blue;
+			flex-direction: column;
+			align-items: center;
+			.copyright {
+				@include text-small; 
+			}
+		}
 	}
 
 	a {
@@ -33,6 +45,7 @@ const year = new Date().getFullYear();
 
 	.footlinx {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 2.5rem;
 	}
 

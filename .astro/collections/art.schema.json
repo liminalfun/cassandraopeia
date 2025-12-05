@@ -10,13 +10,13 @@
         "description": {
           "type": "string"
         },
-        "year": {
+        "date": {
           "type": "string"
         },
-        "cover": {
+        "imagePath": {
           "type": "string"
         },
-        "coverAlt": {
+        "altText": {
           "type": "string"
         },
         "tags": {
@@ -34,8 +34,8 @@
       },
       "required": [
         "title",
-        "cover",
-        "coverAlt",
+        "imagePath",
+        "altText",
         "tags"
       ],
       "additionalProperties": false

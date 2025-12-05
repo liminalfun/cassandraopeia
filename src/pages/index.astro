@@ -2,6 +2,7 @@
 // Homepage layout
 
 import Layout from '../layouts/Layout.astro';
+import Artwork from '../components/Artwork.astro';
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 
@@ -12,10 +13,13 @@ const { Content } = await home.render();
 ---
 
 <Layout title={home.data.title} description={home.data.description}, share_image={home.data.share_image}>
-	<main class="site">
-		<div class="featured">
-			<Image src={featured.data.cover} alt={featured.data.coverAlt} />
-		</div>
+	<main class="site home">
+		<Artwork
+			imagePath={featured.data.imagePath}
+			altText={featured.data.altText}
+			title={featured.data.title}
+			date={featured.data.date}
+		/>
 		<div class="content">
 			<Content />
 		</div>
@@ -26,25 +30,15 @@ const { Content } = await home.render();
 
 	@use "../styles/base/vars" as *;
 
-	.hero {
-		margin-bottom: 2.5rem;
+	.site{
+		text-align: center;
 	}
-
-	.card {
-		background-color: var(--color-light-secondary);
-		padding: .8rem .5rem;
-		border-radius: var(--border-radius);
-		margin-bottom: 1.5rem;
-	}
-
-	.booking {
-		margin-bottom: 3rem;
-	}
-	
-	figure {
+	.artwork{
+		margin: 0 auto;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
+	}
+	.content{
+		text-align: center; 
 	}
 
 </style>

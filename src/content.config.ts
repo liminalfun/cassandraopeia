@@ -11,13 +11,9 @@ const artCollection = defineCollection({
 	schema: ({ image}) => z.object({
 		title: z.string(),
 		description: z.string().optional(),
-		year: z.string().optional(),
-		// image: z.object({
-		// 	src: z.string(),
-		// 	alt: z.string(),
-		// }),
-		cover: image(),
-		coverAlt: z.string(),
+		date: z.string().optional(),
+		imagePath: image(),
+		altText: z.string(),
 		tags: z.array(z.string()),
 		sortOrder: z.number().optional(),
 	}),
