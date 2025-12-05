@@ -2,9 +2,10 @@
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
 
+// TODO remove /cassandrapopeia after setting up custom domain
 ---
 
-<a href="/paintings" class={currentPath === "paintings" ? "active" : ""}>paintings</a>
-<a href="/drawings" class={currentPath === "drawings" ? "active" : ""}>drawings</a>
-<a href="/about" class={currentPath === "about" ? "active" : ""}>about</a>
-<a href="/contact" class={currentPath === "contact" ? "active" : ""}>contact</a>
+<a href="/cassandraopeia/paintings" class={currentPath === "paintings" ? "active" : ""}>paintings</a>
+<a href="/cassandraopeia/drawings" class={currentPath === "drawings" ? "active" : ""}>drawings</a>
+<a href="/cassandraopeia/about" class={currentPath === "about" ? "active" : ""}>about</a>
+<a href="/cassandraopeia/contact" class={currentPath === "contact" ? "active" : ""}>contact</a>

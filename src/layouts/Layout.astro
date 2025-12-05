@@ -6,6 +6,8 @@ import ColorModeToggle from '../components/global/ColorModeToggle.astro';
 
 // Import
 import { SEO } from "astro-seo";
+import { fade } from "astro:transitions";
+
 
 
 import '../styles/style.scss';
@@ -24,7 +26,7 @@ const { title, description, share_image } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -60,7 +62,7 @@ const { title, description, share_image } = Astro.props;
 	<body>
 		<Header/>
 		<ColorModeToggle/>
-		<slot  />
+		<slot  transition:animate="fade" />
 		<Footer />
 	</body>
 </html>
