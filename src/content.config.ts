@@ -16,6 +16,7 @@ const artCollection = defineCollection({
 		altText: z.string(),
 		tags: z.array(z.string()),
 		sortOrder: z.number().optional(),
+		medium: z.string().optional(),
 	}),
 });
 

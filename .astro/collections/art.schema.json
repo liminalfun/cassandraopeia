@@ -28,6 +28,9 @@
         "sortOrder": {
           "type": "number"
         },
+        "medium": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

@@ -1,0 +1,52 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('art');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title} description={post.data.description} share_image={post.data.imagePath}>
+	<article class="site art">
+
+	<div class="caption">
+		<p class="artist-name">Cassandra</p>
+		<h1 class="artwork-title">{post.data.title}</h1>
+		<p class="artwork-date">{post.data.date}</p>
+		<small class="artwork-medium">{post.data.medium}</small>
+    </div>
+
+    <figure>
+        <Image src={post.data.imagePath} alt={post.data.altText} />
+        <figcaption>
+            <h3 class="title">{post.data.title}</h3>
+            <small class="date">{post.data.date}</small>
+        </figcaption>
+    </figure>
+    
+    {post.data.image && <div class="image-container">
+      <img src={post.data.image} alt={post.data.title} />
+    </div> }
+    
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style lang="scss">
+
+  .art{
+      padding: 1rem;
+  }
+
+</style>

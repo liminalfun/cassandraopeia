@@ -1,15 +1,17 @@
 ---
-import { getImage, Image } from 'astro:assets';
+import { Image } from 'astro:assets';
 
 interface Props {
     imagePath: string;
     altText: string;
     title: string;
     date: string;
+    collection: string;
+    slug: string;
 }
-const { imagePath, altText, title, date } = Astro.props;
+const { imagePath, altText, title, date, collection, slug } = Astro.props;
 ---
-<div class="artwork">
+<a class="artwork" href={`cassandraopeia/${collection}/${slug}`}>
     <figure>
         <Image src={imagePath} alt={altText} />
         <figcaption>
@@ -17,7 +19,7 @@ const { imagePath, altText, title, date } = Astro.props;
             <small class="date">{date}</small>
         </figcaption>
     </figure>
-</div>
+</a>
 
 
 

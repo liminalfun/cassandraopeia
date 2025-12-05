@@ -10,6 +10,8 @@ import { Image } from 'astro:assets';
 const home = await getEntry('page', 'home');
 const featured = await getEntry('art', 'suspended');
 const { Content } = await home.render();
+
+console.log(featured);
 ---
 
 <Layout title={home.data.title} description={home.data.description}, share_image={home.data.share_image}>
@@ -20,6 +22,8 @@ const { Content } = await home.render();
 				altText={featured.data.altText}
 				title={featured.data.title}
 				date={featured.data.date}
+				collection={featured.collection}
+				slug={featured.slug}
 			/>
 		</div>
 		<div class="content">
