@@ -18,35 +18,83 @@ const { Content } = await render(post);
 <Layout title={post.data.title} description={post.data.description} share_image={post.data.imagePath}>
 	<article class="site art">
 
-	<div class="caption">
+	<div class="artwork-caption">
 		<p class="artist-name">Cassandra</p>
-		<h1 class="artwork-title">{post.data.title}</h1>
-		<p class="artwork-date">{post.data.date}</p>
+		<h1 class="artwork-title">
+			{post.data.title}{post.data.date && <span class="artwork-date">, {post.data.date}</span>}
+		</h1>
 		<small class="artwork-medium">{post.data.medium}</small>
     </div>
 
-    <figure>
+    <figure class="artwork-image">
         <Image src={post.data.imagePath} alt={post.data.altText} />
-        <figcaption>
-            <h3 class="title">{post.data.title}</h3>
-            <small class="date">{post.data.date}</small>
-        </figcaption>
     </figure>
-    
-    {post.data.image && <div class="image-container">
-      <img src={post.data.image} alt={post.data.title} />
-    </div> }
-    
-    <div class="content">
-      <Content />
-    </div>
+
   </article>
 </Layout>
 
 <style lang="scss">
+	@use "../../styles/base/vars" as *;
+	@use "../../styles/base/mixins" as *;
+	@use "../../styles/base/typography" as *;
 
-  .art{
-      padding: 1rem;
-  }
+	.art{
+		max-width: 100%;
+	  	display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+      	margin: var(--margin-x);
+	}
+	.artwork-caption{
+		max-width: 12.5rem;
+		padding-right: var(--column-gap);
+	}
+	
+	.artist-name{
+		margin: 0;
+		@include text-h3;
+		font-weight: bold;
+	}
+	.artwork-title{
+		margin: 0;
+		@include text-h3;
+	}
+	.artwork-date{
+		margin: 0;
+
+	}
+	.artwork-medium{
+		margin: 0;
+		font-style: italic;
+	}
+
+	.artwork-image{
+		display: block;
+		flex-grow: 1;
+		max-width: 100%;
+		margin: 0;
+
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	@media screen and (max-width: 1000px){
+		.art {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.artwork{
+			&-image{
+				flex-grow: 0;
+				width: calc(100% - (var(--margin-x) * 2));
+			}
+			&-caption{
+				order: 2;
+			}
+
+		}
+	}
 
 </style>
