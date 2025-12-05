@@ -13,15 +13,21 @@ import sun from '../../images/global/sun.png';
 
 
 <style lang="scss">
-    #themeToggle, .moon{
+    #themeToggle, .moon, .sun{
         position: fixed;
-        top: 1rem;
-        right: 1rem;
+        top: .6rem;
+        right: .6rem;
+        opacity: .6;
+        transition: all .3s ease-in-out;
 
+        &:hover{
+          cursor: pointer;
+          opacity: 1;
+        }
     }
 
     .moon {
-        opacity: 1;
+        opacity: .6;
     }
     .sun {
         opacity: 0;
@@ -32,6 +38,13 @@ import sun from '../../images/global/sun.png';
         .sun {
             opacity: 1;
             filter: invert(100%);
+        }
+    }
+
+    @media screen and (max-width: 700px){
+        img {
+          width: 30px;
+          height: 30px;
         }
     }
 

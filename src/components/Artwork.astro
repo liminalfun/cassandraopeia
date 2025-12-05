@@ -30,8 +30,11 @@ const { imagePath, altText, title, date } = Astro.props;
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        width: 691px;
+        
+         @media screen and (min-width: 850px){
+            //width: 691px;
+            width: 55%;
+        }
 
         // TODO figure out height responsiveness
         // min-height: 75vh;
