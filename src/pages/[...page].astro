@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('page');
+  return pages.map(page => ({
+    params: { page: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await page.render();
+---
+
+<Layout title={page.data.title} description={page.data.description}>
+  <article class="site page">
+    <h1>{page.data.title}</h1>
+    
+    {page.data.image && <div class="image-container">
+      <img src={page.data.image} alt={page.data.title} />
+    </div> }
+    
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+
+</style>

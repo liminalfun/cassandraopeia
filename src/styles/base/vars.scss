@@ -1,0 +1,41 @@
+// Colors ----------------------------------------------------------------------
+// Set your color palette here
+:root {
+	--color-dark-primary: #0F0F0F;
+	--color-dark-secondary: #000000;
+	--color-light-primary: #F3F3F3;
+	--color-light-secondary: #BCD7F1;
+	--color-accent-1: #70B1EC;
+	--color-accent-2: #346A9C;
+	--color-accent-3: #346A9C;
+
+	--color-background: var(--color-light-primary);
+	--color-foreground: var(--color-dark-primary);
+	--color-link: #0E41A5;
+}
+
+// Text ------------------------------------------------------------------------
+// Set base text size and line-height here (for relative padding, etc.)
+// See typography.scss for font and heading sizes
+:root {
+	--text-size: 16px;
+	--text-lineheight : 130%;
+	--border: 1px solid var(var(--color-foreground));
+	--border-dotted: 1px dotted var(--color-foreground);
+}
+
+// Media -----------------------------------------------------------------------
+// Media queries are how the website is responsive to different screen widths.
+// Customize the variables for the breakpoints if needed
+:root {
+	--media-mini   : 360px;   // m
+	--media-phone  : 480px;   // sm
+	--media-tablet : 640px;   // md 
+	--media-laptop : 1024px;  // xl 
+	--media-desktop: 1440px;  // xl
+}
+
+// Other  -----------------------------------------------------------------------
+:root {
+	--border-radius: 0.375rem;
+}

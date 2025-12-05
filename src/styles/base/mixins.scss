@@ -1,0 +1,12 @@
+@use "vars" as *;
+
+
+// Media queries ======================================================
+
+@mixin is-max-tablet{
+	@media screen and (max-width: var(--media-tablet)){ @content }
+}
+
+@mixin is-phone{
+	@media screen and (max-width: var(--media-phone)){ @content }
+}

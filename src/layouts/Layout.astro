@@ -1,0 +1,97 @@
+---
+// Components
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+
+// Import
+import { SEO } from "astro-seo";
+
+
+import '../styles/style.scss';
+
+import { getEntry } from 'astro:content';
+
+interface Props {
+	title: string;
+	description: string;
+	share_image: string;
+}
+
+
+const { title, description, share_image } = Astro.props;
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="sitemap" href="/sitemap-index.xml"/>
+		<meta name="generator" content={Astro.generator} />
+		<SEO
+		title={title}
+		description={description}
+		openGraph={{
+			basic: {
+			title: `${title}`,
+			type: "website",
+			image: `${share_image}`,
+			url: `${Astro.url}`
+			},
+			optional: {
+				// description: `${settings.data.share_description}`,
+				locale: "en",
+			}
+		}}
+		extend={{
+			link: [{ rel: "icon", href: "/favicon.ico" }],
+			meta: [
+			{
+				name: "twitter:image",
+				// content: `${settings.data.share_image}`,
+			}
+			],
+		}}
+		/>
+	</head>
+	<body>
+		<Header/>
+		<slot  />
+		<Footer />
+	</body>
+</html>
+<style is:global lang="scss">
+
+@use "../styles/base/vars" as *;
+@use "../styles/base/mixins" as *;
+@use "../styles/base/typography" as *;
+
+// General --------------------------------------------------------------------------------------------------------------
+body{
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.site{
+	padding: 1rem;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	min-height: 100%;
+	flex-grow: 1;
+
+	@include is-max-tablet{
+		padding: .2rem 1rem;
+	}
+}
+
+.content{
+	width: 100%;
+}
+	 
+</style>
