@@ -1,17 +1,12 @@
 ---
 // Components
+import Head from '../components/global/Head.astro';
 import Header from '../components/global/Header.astro';
 import Footer from '../components/global/Footer.astro';
 import ColorModeToggle from '../components/global/ColorModeToggle.astro';
 
 // Import
-import { SEO } from "astro-seo";
 import { fade } from "astro:transitions";
-
-
-
-import '../styles/style.scss';
-
 import { getEntry } from 'astro:content';
 
 interface Props {
@@ -23,42 +18,14 @@ interface Props {
 
 const { title, description, share_image } = Astro.props;
 
+import '../styles/style.scss';
+
+
 ---
 
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate="none">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/cassandraopeia/favicon.svg" />
-		<link rel="sitemap" href="/sitemap-index.xml"/>
-		<meta name="generator" content={Astro.generator} />
-		<SEO
-		title={`${title} | Cassandraopeia`}
-		description={description}
-		openGraph={{
-			basic: {
-			title: `${title}`,
-			type: "website",
-			image: `${share_image}`,
-			url: `${Astro.url}`
-			},
-			optional: {
-				// description: `${settings.data.share_description}`,
-				locale: "en",
-			}
-		}}
-		extend={{
-			link: [{ rel: "icon", href: "/favicon.ico" }],
-			meta: [
-			{
-				name: "twitter:image",
-				// content: `${settings.data.share_image}`,
-			}
-			],
-		}}
-		/>
-	</head>
+	<Head title={title} description={description} share_image={share_image}/>
 	<body>
 		<Header/>
 		<ColorModeToggle/>

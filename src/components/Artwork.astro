@@ -11,7 +11,7 @@ interface Props {
 }
 const { imagePath, altText, title, date, collection, slug } = Astro.props;
 ---
-<a class="artwork" href={`cassandraopeia/${collection}/${slug}`}>
+<a class="artwork" href={`cassandraopeia/${collection}/${slug}`} data-is-feed-link>
     <figure>
         <Image src={imagePath} alt={altText} />
         <figcaption>
@@ -20,7 +20,6 @@ const { imagePath, altText, title, date, collection, slug } = Astro.props;
         </figcaption>
     </figure>
 </a>
-
 
 
 <style lang="scss">

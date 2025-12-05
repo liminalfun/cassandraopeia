@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
-import Layout from '../../layouts/Layout.astro';
+import Overlay from '../../layouts/Overlay.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('art');
@@ -15,23 +15,24 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title={post.data.title} description={post.data.description} share_image={post.data.imagePath}>
+<Overlay title={post.data.title} description={post.data.description} share_image={post.data.imagePath}>
+
 	<article class="site art">
 
-	<div class="artwork-caption">
-		<p class="artist-name">Cassandra</p>
-		<h1 class="artwork-title">
-			{post.data.title}{post.data.date && <span class="artwork-date">, {post.data.date}</span>}
-		</h1>
-		<small class="artwork-medium">{post.data.medium}</small>
-    </div>
+		<div class="artwork-caption">
+			<p class="artist-name">Cassandra</p>
+			<h1 class="artwork-title">
+				{post.data.title}{post.data.date && <span class="artwork-date">, {post.data.date}</span>}
+			</h1>
+			<small class="artwork-medium">{post.data.medium}</small>
+		</div>
 
-    <figure class="artwork-image">
-        <Image src={post.data.imagePath} alt={post.data.altText} />
-    </figure>
+		<figure class="artwork-image">
+			<Image src={post.data.imagePath} alt={post.data.altText} />
+		</figure>
 
   </article>
-</Layout>
+</Overlay>
 
 <style lang="scss">
 	@use "../../styles/base/vars" as *;
@@ -44,6 +45,7 @@ const { Content } = await render(post);
 		flex-wrap: wrap;
 		align-items: flex-end;
       	margin: var(--margin-x);
+		padding-top: 3rem;
 	}
 	.artwork-caption{
 		max-width: 12.5rem;
