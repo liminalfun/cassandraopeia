@@ -38,8 +38,7 @@
       "required": [
         "title",
         "imagePath",
-        "altText",
-        "tags"
+        "altText"
       ],
       "additionalProperties": false
     }

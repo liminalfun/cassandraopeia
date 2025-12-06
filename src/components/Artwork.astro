@@ -1,22 +1,20 @@
 ---
 import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
 
 interface Props {
-    imagePath: string;
-    altText: string;
-    title: string;
-    date: string;
-    collection: string;
-    slug: string;
+    id: string;
 }
-const { imagePath, altText, title, date, collection, slug } = Astro.props;
+const { id } = Astro.props;
+
+const art = await getEntry(id);
 ---
-<a class="artwork" href={`cassandraopeia/${collection}/${slug}`} data-is-feed-link>
+<a class="artwork" href={`cassandraopeia/${art.collection}/${art.slug}`} data-is-feed-link>
     <figure>
-        <Image src={imagePath} alt={altText} />
+        <Image src={art.data.imagePath} alt={art.data.altText} loading="lazy"/>
         <figcaption>
-            <h3 class="title">{title}</h3>
-            <small class="date">{date}</small>
+            <h3 class="title">{art.data.title}</h3>
+            <small class="date">{art.data.date}</small>
         </figcaption>
     </figure>
 </a>
@@ -32,11 +30,13 @@ const { imagePath, altText, title, date, collection, slug } = Astro.props;
         flex-direction: column;
         align-items: center;
 
+        width: 100%;
         margin: 0 auto;
+        text-decoration: none;
         
          @media screen and (min-width: 850px){
             //width: 691px;
-            width: 50%;
+            // width: 50%;
         }
 
         // TODO figure out height responsiveness

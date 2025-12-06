@@ -3,29 +3,27 @@
 
 import Layout from '../layouts/Layout.astro';
 import Artwork from '../components/Artwork.astro';
-import { getEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import Slider from '../components/Slider.astro';
+import { getEntry, getCollection, getEntries } from 'astro:content';
 
 
 const home = await getEntry('page', 'home');
-const featured = await getEntry('art', 'suspended');
+const featured = await getEntry(home.data.featured_image);
+const selectedArtworks = await getEntries(home.data.selected_artworks);
 const { Content } = await home.render();
 ---
 
 <Layout title={home.data.title} description={home.data.description}, share_image={home.data.share_image}>
 	<main class="site home">
-		<div class="block">
+		<div class="featured-image">
 			<Artwork
-				imagePath={featured.data.imagePath}
-				altText={featured.data.altText}
-				title={featured.data.title}
-				date={featured.data.date}
-				collection={featured.collection}
-				slug={featured.slug}
+                id={home.data.featured_image}
+				
 			/>
 		</div>
 		<div class="content">
 			<Content />
+            <Slider posts={home.data.selected_artworks} />
 		</div>
 	</main>
 </Layout>
@@ -38,8 +36,11 @@ const { Content } = await home.render();
 		text-align: center;
 	}
 
-	.block{
+	.featured-image{
 		padding: 0 1.5rem;
+        max-height: 70vh;
+        width: fit-content;
+        margin: 0 auto;
 	}
 
 	.content{

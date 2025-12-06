@@ -1,9 +1,11 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 
 const page = defineCollection({
     schema: z.object({
 		title: z.string(),
 		description: z.string(),
+        featured_image: reference('art').optional(),
+		selected_artworks: z.array(reference('art')).optional(),
 	}),
 });
 
@@ -14,7 +16,7 @@ const artCollection = defineCollection({
 		date: z.string().optional(),
 		imagePath: image(),
 		altText: z.string(),
-		tags: z.array(z.string()),
+		tags: z.array(z.string()).optional(),
 		sortOrder: z.number().optional(),
 		medium: z.string().optional(),
 	}),

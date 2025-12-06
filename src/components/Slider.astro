@@ -1,44 +1,55 @@
 ---
-// TODO
+import Artwork from "./Artwork.astro";
+
+const { posts } = Astro.props;
+// console.log(posts);
+
 ---
 <script>
-    import Swiper from 'swiper';
-    import { History } from 'swiper/modules'
-    import 'swiper/css';
+    import Swiper from 'swiper/bundle';
+    import { History, Scrollbar, Keyboard, A11y } from 'swiper/modules'
+    import 'swiper/css/bundle';
 
     const swiper = new Swiper('.swiper', {
-        modules: [History],
+        modules: [History, Scrollbar, Keyboard, A11y],
+        slidesPerView: 2.5,
         loop: true,
-        grabCursor: true,
-        history: {
-            replaceState: true,
-        },
-        keyboard: true,
-        slideToClickedSlide: true,
-        slidesPerView: 3,
         centeredSlides: true,
-        slidesOffsetBefore: 60,
-        slidesOffsetAfter: 60,
+        centerInsufficientSlides: true,
+        spaceBetween: 30,
+        initialSlide: 3,
+        scrollbar: {
+            draggable: true,
+        },
+        mousewheel: true,
+        keyboard: true,
+        // slideToClickedSlide: true,
+        // slidesOffsetBefore: 30,
+        // slidesOffsetAfter: 30,
     });
 </script>
 
-<!-- Slider main container -->
 <div class="swiper">
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
-    <div class="swiper-slide">Slide 1</div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
-    ...
+    <div class="swiper-wrapper">
+        {posts.map(post => (
+            <div class="swiper-slide">
+                <Artwork id={post} />
+            </div>
+        ))}
   </div>
-  <!-- If we need pagination -->
-  <div class="swiper-pagination"></div>
-
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-
-  <!-- If we need scrollbar -->
-  <div class="swiper-scrollbar"></div>
 </div>
+
+<style lang="scss">
+
+    .swiper-slide{
+        // min-width: 50vw;
+        // max-width: 80vw;
+
+        &-next{
+            &:hover{
+                cursor: url("http://localhost:4321/cassandraopeia/images/arrow.svg");
+            }
+        }
+
+    }
+</style>

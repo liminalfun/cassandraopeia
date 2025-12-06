@@ -40,6 +40,7 @@ import '../styles/style.scss';
 		callback()
 	}
 
+
 	function callback() {
 		const backButton = document.querySelector('[data-back-to-home]')
 		const fromFeed = localStorage.getItem('cameFromFeed')
@@ -51,6 +52,17 @@ import '../styles/style.scss';
 				history.back()
 			}
 		})
+
+        document.body.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (fromFeed && history.length > 1) {
+                    e.preventDefault()
+                    history.back()
+                }
+            }
+        })
+
+
 	}
 </script>
 
