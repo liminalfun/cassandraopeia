@@ -47,8 +47,11 @@ const { posts } = Astro.props;
 
         &-next{
             &:hover{
-                cursor: url("http://localhost:4321/cassandraopeia/images/arrow.svg");
+                cursor: url("http://localhost:4321/images/arrow.svg");
             }
+        }
+        &-next, &-prev{
+            opacity: .5;
         }
 
     }

@@ -4,9 +4,11 @@
 
 // general ---------------------------------------------------------------------
 html {
-	background: var(--color-background);
+	background-color: var(--color-background);
 	color: var(--color-foreground);
 	font-size: var(--text-size);
+    transition: background-color .85s easeout;
+    transition: color .1s ease-in-out;
 
     &.dark {
         --color-background: var(--color-dark-primary);
@@ -19,7 +21,8 @@ body{
 }
 
 ::selection{
-    background-color: var(--color-accent-1)
+    background-color: var(--color-foreground);
+    color: var(--color-background);
 }
 
 p, ul, ol, h1, h2, h3, h4, h5, h6{

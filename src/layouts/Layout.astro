@@ -29,7 +29,9 @@ import '../styles/style.scss';
 	<body>
 		<Header/>
 		<ColorModeToggle/>
-		<slot  transition:animate="fade" />
+        <main class="site">
+            <slot  transition:animate={fade({duration: "0.4s"})} />
+        </main>
 		<Footer />
 	</body>
 </html>
@@ -52,15 +54,11 @@ body{
 }
 
 .site{
-	width: 100%;
+    width: 100%;
 	max-width: 100%;
 	margin: 0 auto;
 	min-height: 100%;
 	flex-grow: 1;
-
-	@include is-max-tablet{
-		padding: .2rem 1rem;
-	}
 }
 
 .content{

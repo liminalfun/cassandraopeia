@@ -8,8 +8,6 @@ import { getEntry, getCollection, getEntries } from 'astro:content';
 
 
 const home = await getEntry('page', 'home');
-const featured = await getEntry(home.data.featured_image);
-const selectedArtworks = await getEntries(home.data.selected_artworks);
 const { Content } = await home.render();
 ---
 

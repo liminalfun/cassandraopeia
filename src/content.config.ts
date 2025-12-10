@@ -6,6 +6,8 @@ const page = defineCollection({
 		description: z.string(),
         featured_image: reference('art').optional(),
 		selected_artworks: z.array(reference('art')).optional(),
+        tag: z.string().optional(),
+        collection: z.string().optional(),
 	}),
 });
 

@@ -11,7 +11,7 @@ import favicons from 'astro-favicons';
 
 export default defineConfig({
   site: 'https://liminalfun.github.io/',
-  base: '/cassandraopeia',
+//   base: '/cassandraopeia',
 
   // site: 'https://cassandraopeia.com',
 

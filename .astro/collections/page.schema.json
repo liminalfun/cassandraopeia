@@ -91,6 +91,12 @@
             ]
           }
         },
+        "tag": {
+          "type": "string"
+        },
+        "collection": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

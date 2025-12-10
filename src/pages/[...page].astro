@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import Slider from '../components/Slider.astro';
+import { dateTimeFormat } from 'astro/dist/core/logger/core';
 
 export async function getStaticPaths() {
   const pages = await getCollection('page');
@@ -12,26 +14,47 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { Content } = await page.render();
+
+// TODO const tag  from page.data.tags to use as a filter
+// TODO add prop for page.data.collection to reference 'art' or another folder (default to art)
+// TODO const collection and reference in filter to get an array of name, collection to use in slider prop as "posts"!
+
+const collection = page.data.collection || 'art';
+const tag = page.data.tag || null;
+
+const posts = await getCollection(collection, ({ data }) => {
+    // console.log(data);
+    // const filteredPosts = data.filter((post) => checkTags(post.data.tags, tag));
+    // return filteredPosts;
+});
+
+// console.log(posts);
+
+function checkTags(array, value) {
+    return array.some((arrayValue)=> value === arrayValue);
+}
+// const filteredPosts = posts.filter((post) => checkTags(post.data.tags, tag));
+
 ---
 
-<Layout title={page.data.title} description={page.data.description}>
-  <article class="site page">
+<Layout title={page.data.title} description={page.data.description} share_image={page.data.share_image}>
+  <article class="page">
     <h1>{page.data.title}</h1>
-    
-    {page.data.image && <div class="image-container">
-      <img src={page.data.image} alt={page.data.title} />
-    </div> }
-    
-    <div class="content">
+
+    <Slider posts={ page.data.selected_artworks }/>
+
+    <div class=content">
       <Content />
     </div>
   </article>
 </Layout>
 
-<style>
+<style lang="scss">
 
-  .page{
-      padding: 1rem;
-  }
+@use "../styles/base/vars" as *;
+
+.page{
+    padding: 0 var(--padding-x-desktop);
+}
 
 </style>
