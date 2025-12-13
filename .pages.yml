@@ -1,0 +1,20 @@
+media:
+    input: src/images
+    output: /src/images
+    # - name: paintings
+    #   input: src/images/paintings
+    # - name: drawings
+    # - name: photos
+    # - name: global
+content:
+    - name: pages
+      label: Pages
+      path: src/content/pages
+      type: collection
+    - name: art
+      label: Artwork
+      type: collection
+components:
+    - slider:
+      label: Slider
+      type: block
