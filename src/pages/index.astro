@@ -16,8 +16,8 @@ const { Content } = await home.render();
 		<div class="featured-image">
             
 			{home.data.featured_image && <Artwork
-                id={home.data.featured_image}
-                collection="art"
+                id={home.data.featured_image.id}
+                collection={home.data.featured_image.collection}
 			/>}
 		</div>
 		<div class="content">
