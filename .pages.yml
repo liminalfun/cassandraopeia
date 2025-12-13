@@ -9,7 +9,7 @@ media:
 content:
     - name: pages
       label: Pages
-      path: src/content/pages
+      path: src/content/pages/
       type: collection
       fields: 
         - name: title
