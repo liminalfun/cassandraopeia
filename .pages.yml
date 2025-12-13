@@ -11,6 +11,8 @@ content:
       label: Pages
       path: src/content/pages
       type: collection
+      fields: [ title, description, featured_image, selected_artworks, tag, collection ]
+      
     - name: art
       label: Artwork
       type: collection
