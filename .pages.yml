@@ -11,6 +11,7 @@ content:
       label: Pages
       path: src/content/page
       type: collection
+      format: json-frontmatter
       fields: 
         - name: title
         - name: description
