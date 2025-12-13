@@ -49,4 +49,7 @@
     --column-count: 12;
     --column-margin: 5rem;
     --column-gap: 1.875rem;
+    @media screen and (max-width: 839px) {
+        --column-gap: 1rem;
+    }
 }

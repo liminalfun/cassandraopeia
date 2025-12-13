@@ -31,6 +31,9 @@
         "medium": {
           "type": "string"
         },
+        "backgroundColor": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

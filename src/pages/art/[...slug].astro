@@ -13,90 +13,133 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
 ---
 
 <Overlay title={post.data.title} description={post.data.description} share_image={post.data.imagePath}>
-
-	<article class="site art">
-
+	<article class="site art" data-background-color={post.data.backgroundColor}>
 		<div class="artwork-caption">
 			<p class="artist-name">Cassandra</p>
-			<h1 class="artwork-title">
-				{post.data.title}{post.data.date && <span class="artwork-date">, {post.data.date}</span>}
+			<h1 class="artwork-heading">
+				<span class="artwork-title">{post.data.title}</span>, {post.data.date && <span class="artwork-date">{post.data.date}</span>}
 			</h1>
-			<small class="artwork-medium">{post.data.medium}</small>
+            {post.data.medium && <small class="artwork-medium">{post.data.medium}</small>}
 		</div>
 
-		<figure class="artwork-image">
-			<Image src={post.data.imagePath} alt={post.data.altText} />
-		</figure>
+        <Image 
+            class="artwork-image"
+            src={post.data.imagePath} 
+            alt={post.data.altText}
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 90vw, 90vw"
+        />
+        <div class="artwork-spacer"></div>
 
   </article>
 </Overlay>
+
+
+<script is:inline>
+    document.addEventListener("astro:page-load", () => {
+    const backgroundDark = document.querySelector('[data-background-color="dark"]');
+    const backgroundLight = document.querySelector('[data-background-color="light"]');
+
+    if (backgroundLight) {
+        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'light' }))
+    } else if (backgroundDark) {
+        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'dark' }))
+    }
+})
+</script>
 
 <style lang="scss">
 	@use "../../styles/base/vars" as *;
 	@use "../../styles/base/mixins" as *;
 	@use "../../styles/base/typography" as *;
 
-	.art{
+    :root{
+        --padding-y: 2.5rem;
+        --height: calc(100vh - ((var(--padding-y) + var(--margin-x)) * 2));
+        --max-width: calc(100vw - (12.5rem + var(--column-gap)));
+    }
+	.site.art{
 		max-width: 100%;
+        display: block;
 	  	display: flex;
-		flex-wrap: wrap;
-		align-items: flex-end;
+        flex-direction: column;
       	margin: var(--margin-x);
-		padding-top: 3rem;
+		padding-top: var(--padding-y);
 	}
-	.artwork-caption{
-		max-width: 12.5rem;
-		padding-right: var(--column-gap);
-	}
-	
-	.artist-name{
-		margin: 0;
-		@include text-h3;
-		font-weight: bold;
-	}
-	.artwork-title{
-		margin: 0;
-		@include text-h3;
-	}
-	.artwork-date{
-		margin: 0;
 
-	}
-	.artwork-medium{
-		margin: 0;
-		font-style: italic;
-	}
+    .artwork{
+        &-caption{
+            padding-top: 1.444rem;
+            padding-right: var(--column-gap);
+            display: flex;
+            flex-direction: column;
+            order: 2;
+            > *:not(small) {
+                margin: 0;
+                @include text-h3;
+
+            }
+            .artist-name{
+                font-weight: bold;
+                // @include text-h3;
+            }
+        }
+        &-heading{
+            margin-top: .111em;
+        }
+        &-title{
+            font-style: italic;
+        }
+        &-medium{
+            margin-top: .777em;
+            @include text-small;
+            opacity: .777;
+            font-style: italic;
+        }
+    }
+	
 
 	.artwork-image{
-		display: block;
-		flex-grow: 1;
-		max-width: 100%;
 		margin: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: var(--height);
+        object-fit: contain;
 
-		img{
-			width: 100%;
-			height: auto;
-		}
-	}
+        animation: .5s ease-in 1 fadeIn;
+}
 
-	@media screen and (max-width: 1000px){
-		.art {
-			flex-direction: column;
-			align-items: flex-start;
-		}
-		.artwork{
-			&-image{
-				flex-grow: 0;
-				width: calc(100% - (var(--margin-x) * 2));
-			}
-			&-caption{
-				order: 2;
-			}
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 
-		}
-	}
+    @media screen and (min-width: 1024px){
+        .site.art{
+            flex-direction: row;
+            align-items: flex-end;
+        }
+        .artwork{
+            &-caption{
+                flex-basis: 20%;
+                order: 0;
+            }
+            &-image{
+                flex-basis: 60%;
+            }
+            &-spacer{
+                flex-basis: 20%;
+            }
+        }   
+    }
 
 </style>

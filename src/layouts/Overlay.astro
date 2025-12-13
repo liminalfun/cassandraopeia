@@ -3,9 +3,6 @@
 import Head from '../components/global/Head.astro';
 import ColorModeToggle from '../components/global/ColorModeToggle.astro';
 
-// Import
-import { fade } from "astro:transitions";
-import { getEntry } from 'astro:content';
 
 interface Props {
 	title: string;
@@ -17,53 +14,66 @@ interface Props {
 const { title, description, share_image } = Astro.props;
 
 import '../styles/style.scss';
-
 ---
 
-<!doctype html>
-<html lang="en" transition:name="root" transition:animate="none">
+<!doctype html><html lang="en" transition:animate="none">
 	<Head title={title} description={description} share_image={share_image}/>
 	<body>
-		<header>
-			<a class="close" href="/" data-back-to-home>close<a/>
-		</header>
-		<ColorModeToggle/>
+        <header>
+            <a class="close" href="/" data-back-to-home>close<a/>
+            <ColorModeToggle className="flex-item"/>
+        </header>
 		<slot  transition:animate="fade" />
 	</body>
 </html>
 
 <script>
-	import { supportsViewTransitions } from 'astro:transitions/client';
-	if (supportsViewTransitions) {
-		document.addEventListener('astro:page-load', callback)
-	} else {
-		callback()
-	}
 
-
-	function callback() {
-		const backButton = document.querySelector('[data-back-to-home]')
-		const fromFeed = localStorage.getItem('cameFromFeed')
-		localStorage.removeItem('cameFromFeed')
-
-		backButton?.addEventListener('click', (e) => {
-			if (fromFeed && history.length > 1) {
+    function goBack (e) {
+        if (history.length > 1) {
 				e.preventDefault()
 				history.back()
-			}
-		})
+			} else {
+                e.preventDefault();
+                document.location.href = "/";
+        }
+    }
 
+    document.addEventListener("astro:page-load", () => {
+        const backButton = document.querySelector('[data-back-to-home]');
         document.body.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                if (fromFeed && history.length > 1) {
-                    e.preventDefault()
-                    history.back()
-                }
+                goBack(e);
             }
-        })
+        });
 
+        backButton?.addEventListener('click', (e) => {
+            goBack(e);
+        });
+    });
+    
+    // import { supportsViewTransitions } from 'astro:transitions/client';
+	// if (supportsViewTransitions) {
+	// 	document.addEventListener('astro:page-load', callback)
+	// } else {
+	// 	callback()
+	// }
+	// function callback() {
+	// 	const backButton = document.querySelector('[data-back-to-home]');
+	// 	const fromFeed = localStorage.getItem('cameFromFeed')
+	// 	localStorage.removeItem('cameFromFeed')
 
-	}
+    //     document.body.addEventListener('keydown', (e) => {
+    //         console.log(e);
+    //         if (e.key === 'Escape') {
+    //             goBack(e);
+    //         }
+    //     });
+
+	// 	backButton?.addEventListener('click', (e) => {
+	// 		goBack(e);
+	// 	})
+	// }
 </script>
 
 
@@ -75,11 +85,18 @@ import '../styles/style.scss';
 
 header{
 	position: fixed;
-	top: 1.1rem;
-	right: 3.5rem;
+	top: .6rem;
+	right: .6rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
 
 	.close{
 		text-decoration: none;
+        padding-left: 1rem;
+        cursor: pointer;
+        
 		&:hover{
 			text-decoration: underline;
 		}

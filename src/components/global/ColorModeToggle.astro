@@ -4,80 +4,66 @@ import { Image } from 'astro:assets';
 import moon from '../../images/global/moon.png';
 import sun from '../../images/global/sun.png';
 
+const { className } = Astro.props;
 
 ---
-<a id="themeToggle" aria-label="Toggle colour mode">
-    <Image class="sun" src={sun} alt="switch to light mode" width="40" height="40" />
-    <Image class="moon" src={moon} alt="switch to dark mode" width="40" height="40" />
-</a>
+<div
+    id="themeToggle" 
+    aria-label="Toggle colour mode" 
+    class:list={[className]}
+>
+    <Image id="sun" class="sun" src={sun} alt="switch to light mode" width="40" height="40" />
+    <Image id="moon" class="moon" src={moon} alt="switch to dark mode" width="40" height="40" />
+<div/>
 
+<script>
+    document.getElementById("sun")?.addEventListener("click", () => { 
+        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'light' }))
+        
+    });
+    document.getElementById("moon")?.addEventListener("click", () => { 
+        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'dark' }))
+    });
+</script>
 
 <style is:global lang="scss">
-    #themeToggle, .moon, .sun{
+    #themeToggle{
         position: fixed;
         top: .6rem;
         right: .6rem;
-        opacity: 1;
-        transition: all .3s ease-in-out;
-
+        width: 2.5rem;
+        height: 2.5rem;
         &:hover{
           cursor: pointer;
-          opacity: .6;
+        }
+        .moon, .sun {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+        &.flex-item{
+            position: relative !important;
+            top: 0;
+            right: 0;
+            display: block;
         }
     }
 
     .moon {
         opacity: 1;
+        display: block;
     }
     .sun {
         opacity: 0;
-    }
-
-    :global(.dark){
-        .moon { opacity: 0 }
-        .sun {
-            opacity: 1;
-            filter: invert(100%);
-        }
+        display: none;
     }
     #themeToggle{
         @media screen and (max-width: 700px){
-            img {
-              width: 30px;
-              height: 30px;
-            }
+            width: 1.875rem;
+            height: 1.875rem;
         }
     }
 
 </style>
-
-<script is:inline>
-  const theme = (() => {
-    const localStorageTheme = localStorage?.getItem("theme") ?? '';
-    if (['dark', 'light'].includes(localStorageTheme)) {
-      return localStorageTheme;
-    }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-      return 'light';
-  })();
-
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    document.documentElement.classList.add('dark');
-  }
-
-  window.localStorage.setItem('theme', theme);
-
-  const handleToggleClick = () => {
-    const element = document.documentElement;
-    element.classList.toggle("dark");
-
-    const isDark = element.classList.contains("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  }
-
-  document.getElementById("themeToggle")?.addEventListener("click", handleToggleClick);
-</script>

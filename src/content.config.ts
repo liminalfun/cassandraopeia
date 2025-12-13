@@ -1,30 +1,32 @@
-import { defineCollection, reference, z } from 'astro:content';
+import { defineCollection, reference, z } from "astro:content";
 
 const page = defineCollection({
     schema: z.object({
-		title: z.string(),
-		description: z.string(),
-        featured_image: reference('art').optional(),
-		selected_artworks: z.array(reference('art')).optional(),
+        title: z.string(),
+        description: z.string(),
+        featured_image: reference("art").optional(),
+        selected_artworks: z.array(reference("art")).optional(),
         tag: z.string().optional(),
         collection: z.string().optional(),
-	}),
+    }),
 });
 
 const artCollection = defineCollection({
-	schema: ({ image}) => z.object({
-		title: z.string(),
-		description: z.string().optional(),
-		date: z.string().optional(),
-		imagePath: image(),
-		altText: z.string(),
-		tags: z.array(z.string()).optional(),
-		sortOrder: z.number().optional(),
-		medium: z.string().optional(),
-	}),
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            description: z.string().optional(),
+            date: z.string().optional(),
+            imagePath: image(),
+            altText: z.string(),
+            tags: z.array(z.string()).optional(),
+            sortOrder: z.number().optional(),
+            medium: z.string().optional(),
+            backgroundColor: z.string().optional(),
+        }),
 });
 
 export const collections = {
     page: page,
-	art: artCollection,
+    art: artCollection,
 };
