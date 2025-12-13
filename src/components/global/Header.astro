@@ -7,7 +7,7 @@ import logo from '../../images/global/cassandra.png';
 ---
 <header>
 	<a class="logo" href="/">
-		<Image src={logo} alt="Cassandra" width="131" height="21" loading="preload"/>
+		<Image src={logo} alt="Cassandra" width="131" height="21" loading="eager"/>
 	</a>
 	<nav class="nav-links">
 		<Navigation />
@@ -19,7 +19,6 @@ import logo from '../../images/global/cassandra.png';
 
 	header {
 		max-width: 800px;
-
 		display: flex;
 		flex-direction: column;
 		align-items: center;

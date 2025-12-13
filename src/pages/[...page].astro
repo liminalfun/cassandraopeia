@@ -41,9 +41,9 @@ function checkTags(array, value) {
   <article class="page">
     <h1>{page.data.title}</h1>
 
-    <Slider posts={ page.data.selected_artworks }/>
+    {page.data.selected_artworks && <Slider posts={ page.data.selected_artworks }/> }
 
-    <div class=content">
+    <div class="content">
       <Content />
     </div>
   </article>
@@ -53,8 +53,26 @@ function checkTags(array, value) {
 
 @use "../styles/base/vars" as *;
 
-.page{
-    padding: 0 var(--padding-x-desktop);
+h1, .content {
+    padding: 0 var(--padding-x-desktop); 
+}
+.page {
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 840px){
+    h1, .content{
+        padding: 0 2.5rem;
+    }
+}
+@media screen and (max-width: 480px){
+    h1, .content{
+        padding: 0 1.5rem;
+    }
 }
 
 </style>

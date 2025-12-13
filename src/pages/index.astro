@@ -14,14 +14,16 @@ const { Content } = await home.render();
 <Layout title={home.data.title} description={home.data.description}, share_image={home.data.share_image}>
 	<main class="site home">
 		<div class="featured-image">
-			<Artwork
+            
+			{home.data.featured_image && <Artwork
                 id={home.data.featured_image}
-				
-			/>
+                collection="art"
+			/>}
 		</div>
 		<div class="content">
 			<Content />
-            <Slider posts={home.data.selected_artworks} />
+            
+            {home.data.selected_artworks && <Slider posts={home.data.selected_artworks} />}
 		</div>
 	</main>
 </Layout>

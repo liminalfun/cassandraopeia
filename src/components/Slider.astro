@@ -1,45 +1,101 @@
 ---
-import Artwork from "./Artwork.astro";
+/*
+  Slider.astro
+  
+  Horizontal slider component using Swiper.js to showcase entries in a content collection.
+
+    Props:
+        - posts: Array of objects containing 'id' and 'collection' for each content entry to display in the slider.
+
+    Passed to Artwork component to render each slide's content:
+        - id: file name of the content entry -- without '.mdx' extension
+        - collection: content collection name -- folder in src/content
+  
+    Concepts in this file:
+        - Swiper.js integration for horizontal sliding functionality using https://www.npmjs.com/package/astro-swiper
+        - Mapping over passed 'posts' to render multiple Artwork components as slides
+        - class:list directive to conditionally apply classes to Astro components
+*/
+
+import Artwork from './Artwork.astro';
+import { Swiper, SwiperWrapper, SwiperSlide } from 'astro-swiper';
+import type { AstroSwiperType } from "astro-swiper";
 
 const { posts } = Astro.props;
-// console.log(posts);
 
----
-<script>
-    import Swiper from 'swiper/bundle';
-    import { History, Scrollbar, Keyboard, A11y } from 'swiper/modules'
-    import 'swiper/css/bundle';
-
-    const swiper = new Swiper('.swiper', {
-        modules: [History, Scrollbar, Keyboard, A11y],
+const astroSwiperOptions: AstroSwiperType = {
+    options: {
         slidesPerView: 2.5,
+        spaceBetween: 30,
+        initialSlide: 1,
         loop: true,
         centeredSlides: true,
         centerInsufficientSlides: true,
-        spaceBetween: 30,
-        initialSlide: 3,
-        scrollbar: {
-            draggable: true,
-        },
+        scrollbar: { draggable: true },
         mousewheel: true,
         keyboard: true,
-        // slideToClickedSlide: true,
-        // slidesOffsetBefore: 30,
-        // slidesOffsetAfter: 30,
-    });
-</script>
+        roundLengths: true,
+        breakpoints: {
+            320: {
+                slidesPerView: 1.5,
+                spaceBetween: 17,
+            },
+            640: {
+                slidesPerView: 2.1,
+                spaceBetween: 20,   
+            },
+            850: {
+                slidesPerView: 2.5,
+                spaceBetween: 30,
+            }
+        },
+    },
+};
 
-<div class="swiper">
-    <div class="swiper-wrapper">
-        {posts.map(post => (
-            <div class="swiper-slide">
-                <Artwork id={post} />
-            </div>
-        ))}
-  </div>
-</div>
+// // unique id per instance so multiple sliders can be on the same page
+// const sliderId = `slider-${Date.now().toString(36)}-${Math.floor(Math.random() * 10000)}`;
+
+---
+
+{posts.length === 0 ? (
+    <div class="slider-error">Sorry, there's no matching artwork here! Please check the IDs you're referencing. </div>
+    )  : (
+    <Swiper options={astroSwiperOptions.options}>
+        <SwiperWrapper>
+            {posts.map(post => (
+                <SwiperSlide>
+                    <Artwork id={post.id} collection={post.collection} />
+                </SwiperSlide>
+            ))}
+        </SwiperWrapper>
+    </Swiper>
+)}
+
 
 <style lang="scss">
+
+    .swiper-wrapper{
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        // CSS Grid/Flexbox bug size workaround
+        // @see https://github.com/kenwheeler/slick/issues/982
+        // @see https://github.com/nolimits4web/swiper/issues/3599
+        min-height: 0;
+        min-width: 0;
+    }
+
+    .swiper{
+        transition: opacity .5s ease-in;
+    }
+
+    .swiper:not(.swiper-initialized){
+        opacity: 0;
+        
+    }
+    .swiper-initialized{
+        opacity: 1;
+    }
 
     .swiper-slide{
         // min-width: 50vw;

@@ -2,22 +2,43 @@
 import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
 
+// identify properties that will be passed to this component
 interface Props {
     id: string;
+    collection: keyof import('astro:content').DataEntryMap;
 }
-const { id } = Astro.props;
+const { id, collection } = Astro.props as Props;
 
-const art = await getEntry(id);
+
+// guard getEntry so missing entries don't break the page
+let artEntry = null;
+try {
+    artEntry = await getEntry(collection, id);
+} catch (err) {
+    console.warn(`Artwork entry not found: ${collection}/${id}`);
+}
+
+// console.log(id);
 ---
-<a class="artwork" href={`cassandraopeia/${art.collection}/${art.slug}`} data-is-feed-link>
-    <figure>
-        <Image src={art.data.imagePath} alt={art.data.altText} loading="lazy"/>
-        <figcaption>
-            <h3 class="title">{art.data.title}</h3>
-            <small class="date">{art.data.date}</small>
-        </figcaption>
-    </figure>
-</a>
+
+{artEntry && (
+    <a class="artwork" href={`/${artEntry.collection}/${artEntry.slug}`} data-is-feed-link>
+        <figure>
+            <Image
+                src={artEntry.data.imagePath}
+                alt={artEntry.data.altText}
+                loading="lazy"
+                class="art-img"
+                widths={[400, 800, 1200]}
+                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            <figcaption>
+                <h3 class="title">{artEntry.data.title}</h3>
+                <small class="date">{artEntry.data.date}</small>
+            </figcaption>
+        </figure>
+    </a>
+)}
 
 
 <style lang="scss">
@@ -74,7 +95,6 @@ const art = await getEntry(id);
         max-height: 100%;
         max-width: 100%;
         flex-grow: 1;
-
     }
 
     figcaption{
