@@ -17,7 +17,7 @@ content:
       label: Artwork
       type: collection
       path: src/content/art
-components:
-    - slider:
-      label: Slider
-      type: block
+# components:
+ #   - slider:
+  #    label: Slider
+    #  type: block
