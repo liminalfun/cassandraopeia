@@ -6,23 +6,7 @@ media:
     # - name: drawings
     # - name: photos
     # - name: global
-content:
-    - name: pages
-      label: Pages
-      path: src/content/page
-      type: collection
-      format: json-frontmatter
-      fields: 
-        - name: title
-        - name: description
-        - name: featured_image
-        - name: selected_artworks
-        - name: tag
-        - name: collection
-    - name: art
-      label: Artwork
-      type: collection
-      path: src/content/art
+content: src/content
 # components:
  #   - slider:
   #    label: Slider
