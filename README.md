@@ -8,7 +8,7 @@ This website is designed and developed by Alex Nawotka, using Astro.js -- It is 
 
 // TODO Add basic editing guide
 
-Go to `[src/content](https://github.com/liminalfun/cassandraopeia/tree/132215cb02c6114ff029389c6aacd8fa616b73ce/src/content)`
+[Edit content](https://github.com/liminalfun/cassandraopeia/tree/132215cb02c6114ff029389c6aacd8fa616b73ce/src/content) --- `src/content`
 
 ### Fundamental concepts
 
