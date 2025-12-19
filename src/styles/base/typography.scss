@@ -64,6 +64,10 @@
     font-size: 1.25rem;
     line-height: 117%;
     font-weight: normal;
+
+    @include is-max-tablet {
+        font-size: 1rem;
+    }
 }
 @mixin text-h4 {
     font-size: 1.1rem;

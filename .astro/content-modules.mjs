@@ -7,6 +7,7 @@ export default new Map([
 ["src/content/page/Paintings.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fpage%2FPaintings.mdx&astroContentModuleFlag=true")],
 ["src/content/art/being-here.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fart%2Fbeing-here.mdx&astroContentModuleFlag=true")],
 ["src/content/art/birthing-seed.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fart%2Fbirthing-seed.mdx&astroContentModuleFlag=true")],
+["src/content/art/cassandraopeia.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fart%2Fcassandraopeia.mdx&astroContentModuleFlag=true")],
 ["src/content/art/dying-glint.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fart%2Fdying-glint.mdx&astroContentModuleFlag=true")],
 ["src/content/art/flower-meditation-quartz.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fart%2Fflower-meditation-quartz.mdx&astroContentModuleFlag=true")],
 ["src/content/art/fluidly-in-the-water.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fart%2Ffluidly-in-the-water.mdx&astroContentModuleFlag=true")],

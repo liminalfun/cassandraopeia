@@ -52,7 +52,7 @@ const { Content } = await render(post);
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" is:global>
 	@use "../../styles/base/vars" as *;
 	@use "../../styles/base/mixins" as *;
 	@use "../../styles/base/typography" as *;
@@ -64,7 +64,6 @@ const { Content } = await render(post);
     }
 	.site.art{
 		max-width: 100%;
-        display: block;
 	  	display: flex;
         flex-direction: column;
       	margin: var(--margin-x);
@@ -85,7 +84,6 @@ const { Content } = await render(post);
             }
             .artist-name{
                 font-weight: bold;
-                // @include text-h3;
             }
         }
         &-heading{
@@ -112,15 +110,11 @@ const { Content } = await render(post);
         object-fit: contain;
 
         animation: .5s ease-in 1 fadeIn;
-}
+    }   
 
     @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+        0% { opacity: 0; }
+        100% { opacity: 1; }
     }
 
     @media screen and (min-width: 1024px){
