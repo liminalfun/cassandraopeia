@@ -54,11 +54,18 @@
     font-size: 2.5rem;
     line-height: 117%;
     font-weight: normal;
+    @include is-max-tablet {
+        font-size: 1.5rem;
+    }
 }
 @mixin text-h2 {
     font-size: 1.5rem;
     line-height: 117%;
     font-weight: normal;
+
+    @include is-max-tablet {
+        font-size: 1.25rem;
+    }
 }
 @mixin text-h3 {
     font-size: 1.25rem;

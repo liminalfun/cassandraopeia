@@ -28,11 +28,19 @@ const year = new Date().getFullYear();
 
 		@media screen and (max-width: 850px){
 			flex-direction: column;
-			align-items: center;
 			.copyright {
+                margin-bottom: .5em;
 				@include text-small; 
 			}
 		}
+
+        @include is-phone{
+            gap: .777rem;
+            padding: 3rem .75rem 0;
+            .copyright{
+                opacity: .6;
+            }
+        }
 	}
 
 	a {
@@ -46,6 +54,12 @@ const year = new Date().getFullYear();
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2.5rem;
+
+        @include is-phone{
+            width: 100%;
+            flex-direction: column;
+            gap: .25em;
+        }
 	}
 
 </style>

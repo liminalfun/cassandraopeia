@@ -15,7 +15,19 @@ import logo from '../../images/global/cassandra.png';
 </header>
 
 <style lang="scss" is:global>
+
+    @use "../../styles/base/vars" as *;
+    @use "../../styles/base/mixins" as *;
 	@use "../../styles/base/typography" as *;
+
+
+    :root {
+        --border-width: 2.222px;
+
+        @include is-phone{
+            --border-width: 1.111px;
+        }
+    }
 
 	header {
 		max-width: 800px;
@@ -25,6 +37,10 @@ import logo from '../../images/global/cassandra.png';
 
 		margin: 0 auto;
 		padding: 1.111rem 1.111rem;
+
+        @include is-phone{
+            padding: 1rem .25rem;
+        }
 	}
 
 	.logo {
@@ -49,18 +65,15 @@ import logo from '../../images/global/cassandra.png';
 			text-decoration: none;
 			padding: .6rem 1.75rem;
 			margin: 0 -.5rem;
-			border: 2.22px solid transparent;
+			border: var(--border-width) solid transparent;
 			border-radius: 100%;
 			transition: border 1s ease-out;
-			&:hover{
-				border: 2.22px solid var(--color-foreground);
+			&:hover, &.active{
+                border-color: var(--color-foreground);
 			}
-			&.active{
-				border: 2.22px solid var(--color-foreground);
-			}
-            @media screen and (max-width: 479px){
-                margin: 0 -.444rem;
-                padding: .6rem 1.222rem;
+            @include is-phone{
+                margin: 0 -.2rem;
+                padding: .444rem 1rem;
             }
 		}
 	}

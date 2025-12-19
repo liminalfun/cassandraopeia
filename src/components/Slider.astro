@@ -39,7 +39,7 @@ const astroSwiperOptions: AstroSwiperType = {
         breakpoints: {
             320: {
                 slidesPerView: 1.5,
-                spaceBetween: 17,
+                spaceBetween: 16,
             },
             640: {
                 slidesPerView: 2.1,
@@ -74,6 +74,7 @@ const astroSwiperOptions: AstroSwiperType = {
 
 
 <style lang="scss">
+    @use "../styles/base/mixins" as *;
 
     .swiper-wrapper{
         width: 100%;
@@ -85,7 +86,7 @@ const astroSwiperOptions: AstroSwiperType = {
         min-height: 0;
         min-width: 0;
         &:hover > .swiper-slide:not(:hover){
-                opacity: .5;
+            opacity: .5;
         
         }
     }
@@ -104,5 +105,11 @@ const astroSwiperOptions: AstroSwiperType = {
 
     .swiper-slide{
         transition: opacity .3s ease-out;
+    }
+
+    @include is-max-tablet{
+        .swiper-slide-next, .swiper-slide-prev{
+            opacity: .5;
+        }
     }
 </style>
