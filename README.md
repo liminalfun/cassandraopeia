@@ -5,8 +5,22 @@ This website is designed and developed by Alex Nawotka, using Astro.js -- It is 
 
 ## Editing Guide
 
-// TODO Add basic editing guide
+[All images](https://github.com/liminalfun/cassandraopeia/tree/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/images) --- `src/images`
+- [Paintings](https://github.com/liminalfun/cassandraopeia/tree/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/images/paintings)
+- [Drawings](https://github.com/liminalfun/cassandraopeia/tree/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/images/drawings)
+- [Photos](https://github.com/liminalfun/cassandraopeia/tree/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/images/photos)
 
+[All pages](https://github.com/liminalfun/cassandraopeia/tree/132215cb02c6114ff029389c6aacd8fa616b73ce/src/content) --- `src/content`
+- [Homepage](https://github.com/liminalfun/cassandraopeia/blob/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/content/page/Home.mdx)
+- [About](https://github.com/liminalfun/cassandraopeia/blob/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/content/page/About.mdx)
+- [Contact](https://github.com/liminalfun/cassandraopeia/blob/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/content/page/Contact.mdx)
+- [Paintings](https://github.com/liminalfun/cassandraopeia/blob/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/content/page/Paintings.mdx)
+- [Drawings](https://github.com/liminalfun/cassandraopeia/blob/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/content/page/Drawings.mdx)
+- [All Artworks](https://github.com/liminalfun/cassandraopeia/blob/5f9393b8b35f7862617a1eb6282568d5a4a7fbf6/src/content/art)
+
+
+
+// TODO Add basic editing guide
 ### Fundamental concepts
 
 ### How to edit existing content
