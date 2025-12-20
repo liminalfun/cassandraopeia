@@ -33,10 +33,17 @@ const astroSwiperOptions: AstroSwiperType = {
         centeredSlides: true,
         centerInsufficientSlides: true,
         scrollbar: { draggable: true },
-        mousewheel: true,
+        mousewheel: {
+            enabled: true,
+            releaseOnEdges: true,
+        },
         keyboard: true,
         roundLengths: true,
         watchSlidesProgress: true,
+        touchReleaseOnEdges: true,
+        threshold: 0,
+        preventInteractionOnTransition: true,
+        preventClicks: true,
         breakpoints: {
             320: {
                 // slidesPerView: 1.4,

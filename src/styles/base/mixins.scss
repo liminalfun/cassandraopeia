@@ -2,6 +2,12 @@
 
 // Media queries ======================================================
 
+@mixin is-max-sm-laptop {
+    @media screen and (max-width: $media-sm-laptop) {
+        @content;
+    }
+}
+
 @mixin is-max-tablet {
     @media screen and (max-width: $media-tablet) {
         @content;
