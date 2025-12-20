@@ -10,6 +10,7 @@ const page = defineCollection({
             selected_artworks: z.array(reference("art")).optional(),
             tag: z.string().optional(),
             collection: z.string().optional(),
+            title_image: image().optional(),
         }),
 });
 
