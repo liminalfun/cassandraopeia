@@ -13,3 +13,9 @@
         @content;
     }
 }
+
+@mixin is-mini {
+    @media screen and (max-width: $media-mini) {
+        @content;
+    }
+}

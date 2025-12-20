@@ -6,9 +6,10 @@
 html {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-size: var(--text-size);
+    // font-size: var(--text-size);
     transition: background-color 0.85s easeout;
     transition: color 0.1s ease-in-out;
+    @include text;
 
     &.dark,
     &[data-theme="dark"] {

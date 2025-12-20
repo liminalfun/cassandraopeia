@@ -17,6 +17,7 @@ const { Content } = await home.render();
 			{home.data.featured_image && <Artwork
                 id={home.data.featured_image.id}
                 collection={home.data.featured_image.collection}
+                className="is-featured"
 			/>}
 		</div>
 		<div class="content">
@@ -33,7 +34,7 @@ const { Content } = await home.render();
     @use "../styles/base/mixins" as *;
 
     :root{
-         --height: calc(70vh - ((var(--padding-y) + var(--margin-x)) * 2));
+        --height: calc(90vh - ((var(--margin-x)) * 2));
     }
 	.site{
 		text-align: center;
@@ -42,7 +43,7 @@ const { Content } = await home.render();
 	.featured-image{
         max-height: var(--height);
         padding: 0 var(--padding-x);
-		padding-bottom: var(--padding-x);
+		padding-bottom: var(--padding-y);
         display: flex;
         margin: 0 auto;
         animation: .5s ease-in 1 fadeIn;

@@ -39,11 +39,14 @@
 
 @mixin text {
     font-family: "Nimbus Sans", Arial, Helvetica, sans-serif;
-    font-size: 1.0625rem;
+    font-size: 17px;
     line-height: 144%;
 
     @include is-phone {
-        font-size: 1rem;
+        font-size: 16px;
+    }
+    @include is-mini {
+        font-size: 14px;
     }
 }
 @mixin text-small {

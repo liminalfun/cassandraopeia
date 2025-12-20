@@ -25,7 +25,8 @@ const { posts } = Astro.props;
 
 const astroSwiperOptions: AstroSwiperType = {
     options: {
-        slidesPerView: 2.5,
+        slidesPerView: "auto",
+        // slidesPerView: 2.5,
         spaceBetween: 30,
         initialSlide: 1,
         loop: true,
@@ -35,18 +36,18 @@ const astroSwiperOptions: AstroSwiperType = {
         mousewheel: true,
         keyboard: true,
         roundLengths: true,
-        // watchSlidesProgress: true,
+        watchSlidesProgress: true,
         breakpoints: {
             320: {
-                slidesPerView: 1.4,
+                // slidesPerView: 1.4,
                 spaceBetween: 12,
             },
             640: {
-                slidesPerView: 2.1,
+                // slidesPerView: 2.1,
                 spaceBetween: 20,   
             },
             850: {
-                slidesPerView: 2.5,
+                // slidesPerView: 2.5,
                 spaceBetween: 30,
             }
         },
@@ -65,7 +66,7 @@ const astroSwiperOptions: AstroSwiperType = {
         <SwiperWrapper>
             {posts.map(post => (
                 <SwiperSlide>
-                    <Artwork id={post.id} collection={post.collection} />
+                    <Artwork id={post.id} collection={post.collection} className="is-slide"/>
                 </SwiperSlide>
             ))}
         </SwiperWrapper>
@@ -107,11 +108,21 @@ const astroSwiperOptions: AstroSwiperType = {
 
     .swiper-slide{
         transition: opacity .3s ease-out;
+        max-width: 80%;
+        width: max-content;
     }
 
-    @include is-max-tablet{
+    @media(hover: none){
         .swiper-slide-next, .swiper-slide-prev{
             opacity: .5;
+        }
+        .swiper-slide-active{
+            opacity: 1;
+        }
+    }
+    @include is-phone{
+        .swiper-slide{
+            max-width: 85vw;
         }
     }
 </style>
