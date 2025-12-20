@@ -38,8 +38,8 @@ const astroSwiperOptions: AstroSwiperType = {
         // watchSlidesProgress: true,
         breakpoints: {
             320: {
-                slidesPerView: 1.5,
-                spaceBetween: 16,
+                slidesPerView: 1.4,
+                spaceBetween: 12,
             },
             640: {
                 slidesPerView: 2.1,
@@ -85,9 +85,11 @@ const astroSwiperOptions: AstroSwiperType = {
         // @see https://github.com/nolimits4web/swiper/issues/3599
         min-height: 0;
         min-width: 0;
-        &:hover > .swiper-slide:not(:hover){
-            opacity: .5;
-        
+        @media(hover: hover) and (pointer: fine) {
+            &:hover > .swiper-slide:not(:hover){
+                opacity: .5;
+            
+            }
         }
     }
 

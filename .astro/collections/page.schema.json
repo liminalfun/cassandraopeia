@@ -49,6 +49,9 @@
             }
           ]
         },
+        "share_image": {
+          "type": "string"
+        },
         "selected_artworks": {
           "type": "array",
           "items": {

@@ -93,10 +93,11 @@ header{
 		text-decoration: none;
         padding: .5rem;
         cursor: pointer;
-        
-		&:hover{
-			text-decoration: underline;
-		}
+        @media(hover: hover) and (pointer: fine) {
+            &:hover{
+                text-decoration: underline;
+            }
+        }
 	}
 }
 	 

@@ -1,14 +1,16 @@
 import { defineCollection, reference, z } from "astro:content";
 
 const page = defineCollection({
-    schema: z.object({
-        title: z.string(),
-        description: z.string(),
-        featured_image: reference("art").optional(),
-        selected_artworks: z.array(reference("art")).optional(),
-        tag: z.string().optional(),
-        collection: z.string().optional(),
-    }),
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            description: z.string(),
+            featured_image: reference("art").optional(),
+            share_image: image().optional(),
+            selected_artworks: z.array(reference("art")).optional(),
+            tag: z.string().optional(),
+            collection: z.string().optional(),
+        }),
 });
 
 const artCollection = defineCollection({

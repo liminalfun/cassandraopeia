@@ -68,7 +68,13 @@ import logo from '../../images/global/cassandra.png';
 			border: var(--border-width) solid transparent;
 			border-radius: 100%;
 			transition: border 1s ease-out;
-			&:hover, &.active{
+            @media(hover: hover) and (pointer: fine) {
+                &:hover{
+                    border-color: var(--color-foreground);
+                }
+            }
+
+			&.active{
                 border-color: var(--color-foreground);
 			}
             @include is-phone{

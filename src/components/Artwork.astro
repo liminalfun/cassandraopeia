@@ -80,9 +80,11 @@ try {
         align-items: center;
         // TODO possibly refactor as class prop for homepage
         
-        &:hover{
-            figcaption{
-                opacity: 1;
+        @media(hover: hover) and (pointer: fine) {
+            &:hover{
+                figcaption{
+                    opacity: 1;
+                }
             }
         }
     }
