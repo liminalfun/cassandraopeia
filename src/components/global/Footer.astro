@@ -1,68 +1,75 @@
 ---
 const year = new Date().getFullYear();
 ---
-<footer>
-	<div class="footlinx">
-		<a href="/">cassandraopeia</a>
-		<a href="/contact">contact</a>
-		<a href="https://instagram.com/casi.ta" target="_blank">instagram</a>
-	</div>
 
-	<p class="copyright">&copy; {year}, Cassandra Tankó. Website by <a target="_blank" href="https://alexnawotka.com">Alex Nawotka</a></p>
-	
+<footer>
+    <div class="footlinx">
+        <a href="/">cassandraopeia</a>
+        <a href="/contact">contact</a>
+        <a href="https://instagram.com/casi.ta" target="_blank">instagram</a>
+    </div>
+
+    <p class="copyright">
+        &copy; Cassandra Tankó, {year}
+    </p>
 </footer>
 
 <style lang="scss">
-	@use "../../styles/base/vars" as *;
-	@use "../../styles/base/mixins" as *;
-	@use "../../styles/base/typography" as *;
+    @use "../../styles/base/vars" as *;
+    @use "../../styles/base/mixins" as *;
+    @use "../../styles/base/typography" as *;
 
-	footer {
-		max-width: 100%;
-		padding: 3rem 1rem 0;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		align-items: baseline;
-		gap: 1rem;
+    footer {
+        max-width: 100%;
+        padding: 7rem 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
 
-		@include is-max-tablet{
-			flex-direction: column;
-			.copyright {
-                margin-bottom: .5em;
-				@include text-small; 
-			}
-		}
+        .copyright {
+            @include text-small;
+            opacity: 0.5;
+            margin-bottom: 0.5rem;
+        }
 
-        @include is-phone{
-            gap: .777rem;
-            padding: 3rem .75rem 0;
-            .copyright{
-                opacity: .6;
+        @include is-max-tablet {
+            flex-direction: column;
+            .copyright {
+                margin-bottom: 0.5em;
+                @include text-small;
             }
         }
-	}
 
-	a {
-		text-decoration: none;
-        @media(hover: hover) and (pointer: fine) {
-            &:hover{
+        @include is-phone {
+            gap: 0.777rem;
+            padding: 3rem 0.75rem 0;
+            .copyright {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    a {
+        text-decoration: none;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
                 text-decoration: underline dotted;
             }
         }
-	}
+    }
 
-	.footlinx {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2.5rem;
+    .footlinx {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
 
-        @include is-phone{
+        @include is-phone {
             width: 100%;
             flex-direction: column;
-            gap: .25em;
+            gap: 0.25em;
             @include text-small;
         }
-	}
-
+    }
 </style>
