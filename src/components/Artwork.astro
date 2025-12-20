@@ -119,6 +119,11 @@ try {
                 @include is-max-sm-laptop {
                     height: 45vh;
                 }
+
+                @media screen and (max-width: $media-sm-laptop) and (orientation: portrait) {
+                    height: 27vh;
+                }
+
                 @include is-phone {
                     height: 35vh;
                 }

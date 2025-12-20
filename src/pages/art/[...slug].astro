@@ -1,77 +1,94 @@
 ---
-import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
-import Overlay from '../../layouts/Overlay.astro';
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+import Overlay from "../../layouts/Overlay.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('art');
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+    const posts = await getCollection("art");
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-
 ---
 
-<Overlay title={post.data.title} description={post.data.description} share_image={post.data.imagePath}>
-	<article class="site art" data-background-color={post.data.backgroundColor}>
-		<div class="artwork-caption">
-			<p class="artist-name">Cassandra</p>
-			<h1 class="artwork-heading">
-				<span class="artwork-title">{post.data.title}</span>, {post.data.date && <span class="artwork-date">{post.data.date}</span>}
-			</h1>
-            {post.data.medium && <small class="artwork-medium">{post.data.medium}</small>}
-		</div>
+<Overlay
+    title={post.data.title}
+    description={post.data.description}
+    share_image={post.data.imagePath}
+>
+    <article class="site art" data-background-color={post.data.backgroundColor}>
+        <div class="artwork-caption">
+            <p class="artist-name">Cassandra</p>
+            <h1 class="artwork-heading">
+                <span class="artwork-title">{post.data.title}</span>, {
+                    post.data.date && (
+                        <span class="artwork-date">{post.data.date}</span>
+                    )
+                }
+            </h1>
+            {
+                post.data.medium && (
+                    <small class="artwork-medium">{post.data.medium}</small>
+                )
+            }
+        </div>
 
-        <Image 
+        <Image
             class="artwork-image"
-            src={post.data.imagePath} 
+            src={post.data.imagePath}
             alt={post.data.altText}
             widths={[400, 800, 1200]}
             sizes="(max-width: 600px) 100vw, (max-width: 1200px) 90vw, 90vw"
         />
         <div class="artwork-spacer"></div>
-
-  </article>
+    </article>
 </Overlay>
-
 
 <script>
     document.addEventListener("astro:page-load", () => {
-    const backgroundDark = document.querySelector('[data-background-color="dark"]');
-    const backgroundLight = document.querySelector('[data-background-color="light"]');
+        const backgroundDark = document.querySelector(
+            '[data-background-color="dark"]'
+        );
+        const backgroundLight = document.querySelector(
+            '[data-background-color="light"]'
+        );
 
-    if (backgroundLight) {
-        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'light' }))
-    } else if (backgroundDark) {
-        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'dark' }))
-    }
-})
+        if (backgroundLight) {
+            document.dispatchEvent(
+                new CustomEvent("set-theme", { detail: "light" })
+            );
+        } else if (backgroundDark) {
+            document.dispatchEvent(
+                new CustomEvent("set-theme", { detail: "dark" })
+            );
+        }
+    });
 </script>
 
 <style lang="scss" is:global>
-	@use "../../styles/base/vars" as *;
-	@use "../../styles/base/mixins" as *;
-	@use "../../styles/base/typography" as *;
+    @use "../../styles/base/vars" as *;
+    @use "../../styles/base/mixins" as *;
+    @use "../../styles/base/typography" as *;
 
-    :root{
+    :root {
         --padding-y: 2.5rem;
         --height: calc(100vh - ((var(--padding-y) + var(--margin-x)) * 2));
         --max-width: calc(100vw - (12.5rem + var(--column-gap)));
     }
-	.site.art{
-		max-width: 100%;
-	  	display: flex;
+    .site.art {
+        max-width: 100%;
+        display: flex;
         flex-direction: column;
-      	margin: var(--margin-x);
-		padding-top: var(--padding-y);
-	}
+        margin: var(--margin-x);
+        padding-top: var(--padding-y);
+    }
 
-    .artwork{
-        &-caption{
+    .artwork {
+        &-caption {
             padding-top: 1.444rem;
             padding-right: var(--column-gap);
             display: flex;
@@ -80,60 +97,62 @@ const { Content } = await render(post);
             > *:not(small) {
                 margin: 0;
                 @include text-h3;
-
             }
-            .artist-name{
+            .artist-name {
                 font-weight: bold;
             }
         }
-        &-heading{
-            margin-top: .111em;
+        &-heading {
+            margin-top: 0.111em;
         }
-        &-title{
+        &-title {
             font-style: italic;
         }
-        &-medium{
-            margin-top: .777em;
+        &-medium {
+            margin-top: 0.777em;
             @include text-small;
-            opacity: .777;
+            opacity: 0.777;
             font-style: italic;
         }
     }
-	
 
-	.artwork-image{
-		margin: 0;
+    .artwork-image {
+        margin: 0;
         display: block;
         width: 100%;
         height: 100%;
         max-height: var(--height);
         object-fit: contain;
 
-        animation: .5s ease-in 1 fadeIn;
-    }   
-
-    @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
+        animation: 0.5s ease-in 1 fadeIn;
     }
 
-    @media screen and (min-width: 1024px){
-        .site.art{
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .site.art {
             flex-direction: row;
             align-items: flex-end;
         }
-        .artwork{
-            &-caption{
+        .artwork {
+            &-caption {
                 flex-basis: 20%;
                 order: 0;
             }
-            &-image{
-                flex-basis: 60%;
+            &-image {
+                flex-basis: 80%;
+                height: var(--height);
             }
-            &-spacer{
-                flex-basis: 20%;
+            &-spacer {
+                flex-basis: 10%;
             }
-        }   
+        }
     }
-
 </style>
