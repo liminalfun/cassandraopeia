@@ -1,72 +1,89 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import moon from '../../images/global/moon.png';
-import sun from '../../images/global/sun.png';
+import moon from "../../images/global/moon.png";
+import sun from "../../images/global/sun.png";
 
 const { className } = Astro.props;
-
 ---
-<div
-    id="themeToggle" 
-    class:list={[className]}
-    transition:persist
->
-    <Image id="sun" class="sun" src={sun} alt="switch to light mode" width="40" height="40" />
-    <Image id="moon" class="moon" src={moon} alt="switch to dark mode" width="40" height="40" />
-<div/>
 
+<div id="themeToggle" class:list={[className]} transition:persist>
+    <Image
+        id="sun"
+        class="sun"
+        src={sun}
+        densities={[2, 2.5]}
+        alt="switch to light mode"
+        width="35"
+        height="35"
+        quality="max"
+    />
+    <Image
+        id="moon"
+        class="moon"
+        src={moon}
+        densities={[2, 2.5]}
+        alt="switch to dark mode"
+        width="35"
+        height="35"
+        quality="max"
+    />
+    <div></div>
 
-<script>
-    document.getElementById("sun")?.addEventListener("click", () => { 
-        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'light' }))
-        console.log('set to light')
-        
-    });
-    document.getElementById("moon")?.addEventListener("click", () => { 
-        document.dispatchEvent(new CustomEvent('set-theme', { detail: 'dark' }))
-        console.log('set to dark')
-    });
-</script>
+    <script>
+        document.getElementById("sun")?.addEventListener("click", () => {
+            document.dispatchEvent(
+                new CustomEvent("set-theme", { detail: "light" })
+            );
+            console.log("set to light");
+        });
+        document.getElementById("moon")?.addEventListener("click", () => {
+            document.dispatchEvent(
+                new CustomEvent("set-theme", { detail: "dark" })
+            );
+            console.log("set to dark");
+        });
+    </script>
 
-<style is:global lang="scss">
-    #themeToggle{
-        position: fixed;
-        top: .6rem;
-        right: .6rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        &:hover{
-          cursor: pointer;
+    <style is:global lang="scss">
+        #themeToggle {
+            position: fixed;
+            top: 0.6rem;
+            right: 0.6rem;
+            width: 2rem;
+            height: 2rem;
+            &:hover {
+                cursor: pointer;
+            }
+            .moon,
+            .sun {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+            }
+            &.flex-item {
+                position: relative !important;
+                top: 0;
+                right: 0;
+                display: block;
+            }
         }
-        .moon, .sun {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-        }
-        &.flex-item{
-            position: relative !important;
-            top: 0;
-            right: 0;
+
+        .moon {
+            opacity: 1;
             display: block;
         }
-    }
-
-    .moon {
-        opacity: 1;
-        display: block;
-    }
-    .sun {
-        opacity: 0;
-        display: none;
-    }
-    #themeToggle{
-        @media screen and (max-width: 700px){
-            width: 1.875rem;
-            height: 1.875rem;
+        .sun {
+            opacity: 0;
+            display: none;
         }
-    }
-
-</style>
+        #themeToggle {
+            @media screen and (max-width: 700px) {
+                width: 1.875rem;
+                height: 1.875rem;
+            }
+        }
+    </style>
+</div>

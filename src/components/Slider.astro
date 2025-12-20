@@ -1,10 +1,11 @@
 ---
-/*
-  Slider.astro
-  
-  Horizontal slider component using Swiper.js to showcase entries in a content collection.
-
+/* 
+    Slider.astro
+    Horizontal slider component using Swiper.js to showcase entries in a content collection.
+    Documentation: https://swiperjs.com/swiper-api
+    
     Props:
+
         - posts: Array of objects containing 'id' and 'collection' for each content entry to display in the slider.
 
     Passed to Artwork component to render each slide's content:
@@ -17,8 +18,8 @@
         - class:list directive to conditionally apply classes to Astro components
 */
 
-import Artwork from './Artwork.astro';
-import { Swiper, SwiperWrapper, SwiperSlide } from 'astro-swiper';
+import Artwork from "./Artwork.astro";
+import { Swiper, SwiperWrapper, SwiperSlide } from "astro-swiper";
 import type { AstroSwiperType } from "astro-swiper";
 
 const { posts } = Astro.props;
@@ -26,7 +27,6 @@ const { posts } = Astro.props;
 const astroSwiperOptions: AstroSwiperType = {
     options: {
         slidesPerView: "auto",
-        // slidesPerView: 2.5,
         spaceBetween: 30,
         initialSlide: 1,
         loop: true,
@@ -46,89 +46,89 @@ const astroSwiperOptions: AstroSwiperType = {
         preventClicks: true,
         breakpoints: {
             320: {
-                // slidesPerView: 1.4,
                 spaceBetween: 12,
             },
             640: {
-                // slidesPerView: 2.1,
-                spaceBetween: 20,   
+                spaceBetween: 20,
             },
             850: {
-                // slidesPerView: 2.5,
                 spaceBetween: 30,
-            }
+            },
         },
     },
 };
-
-// // unique id per instance so multiple sliders can be on the same page
-// const sliderId = `slider-${Date.now().toString(36)}-${Math.floor(Math.random() * 10000)}`;
-
 ---
 
-{posts.length === 0 ? (
-    <div class="slider-error">Sorry, there's no matching artwork here! Please check the IDs you're referencing. </div>
-    )  : (
-    <Swiper options={astroSwiperOptions.options}>
-        <SwiperWrapper>
-            {posts.map(post => (
-                <SwiperSlide>
-                    <Artwork id={post.id} collection={post.collection} className="is-slide"/>
-                </SwiperSlide>
-            ))}
-        </SwiperWrapper>
-    </Swiper>
-)}
-
+{
+    posts.length === 0 ? (
+        <div class="slider-error">
+            Sorry, there's no matching artwork here! Please check the IDs you're
+            referencing.{" "}
+        </div>
+    ) : (
+        <Swiper options={astroSwiperOptions.options}>
+            <SwiperWrapper>
+                {posts.map((post) => (
+                    <SwiperSlide>
+                        <Artwork
+                            id={post.id}
+                            collection={post.collection}
+                            className="is-slide"
+                        />
+                    </SwiperSlide>
+                ))}
+            </SwiperWrapper>
+        </Swiper>
+    )
+}
 
 <style lang="scss">
     @use "../styles/base/mixins" as *;
 
-    .swiper-wrapper{
+    .swiper-wrapper {
         width: 100%;
         max-width: 100%;
         max-height: 100vh;
         // CSS Grid/Flexbox bug size workaround
-        // @see https://github.com/kenwheeler/slick/issues/982
-        // @see https://github.com/nolimits4web/swiper/issues/3599
+        // see https://github.com/kenwheeler/slick/issues/982
+        // see https://github.com/nolimits4web/swiper/issues/3599
         min-height: 0;
         min-width: 0;
-        @media(hover: hover) and (pointer: fine) {
-            &:hover > .swiper-slide:not(:hover){
-                opacity: .5;
-            
+        @media (hover: hover) and (pointer: fine) {
+            &:hover > .swiper-slide:not(:hover) {
+                opacity: 0.5;
             }
         }
     }
 
-    .swiper{
-        transition: opacity .5s ease-in;
+    .swiper {
+        transition: opacity 0.5s ease-in;
     }
 
-    .swiper:not(.swiper-initialized){
+    .swiper:not(.swiper-initialized) {
         opacity: 0;
-        
     }
-    .swiper-initialized{
+    .swiper-initialized {
         opacity: 1;
     }
 
-    .swiper-slide{
-        transition: opacity .3s ease-out;
+    .swiper-slide {
+        transition: opacity 0.3s ease-out;
         max-width: 80%;
         width: max-content;
     }
 
-    @media(hover: none){
-        .swiper-slide-next, .swiper-slide-prev{
-            opacity: .5;
+    @media (hover: none) {
+        .swiper-slide-next,
+        .swiper-slide-prev {
+            opacity: 0.5;
         }
-        .swiper-slide-active{
+        .swiper-slide-active {
             opacity: 1;
         }
     }
-    @include is-phone{
-        .swiper-slide{
+    @include is-phone {
+        .swiper-slide {
             max-width: 85vw;
         }
     }

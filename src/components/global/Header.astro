@@ -1,86 +1,95 @@
 ---
-import Navigation from './Navigation.astro';
-import { Image } from 'astro:assets';
+import Navigation from "./Navigation.astro";
+import { Image } from "astro:assets";
 
-import logo from '../../images/global/cassandra.png';
-
+import logo from "../../images/global/cassandraopeia.png";
 ---
+
 <header>
-	<a class="logo" href="/">
-		<Image src={logo} alt="Cassandra" width="131" height="21" loading="eager"/>
-	</a>
-	<nav class="nav-links">
-		<Navigation />
-  	</nav>
+    <a class="logo" href="/">
+        <Image
+            src={logo}
+            alt="Cassandraopeia"
+            height="40"
+            quality="max"
+            densities={[2, 2.5]}
+            loading="eager"
+        />
+    </a>
+    <nav class="nav-links">
+        <Navigation />
+    </nav>
 </header>
 
 <style lang="scss" is:global>
-
     @use "../../styles/base/vars" as *;
     @use "../../styles/base/mixins" as *;
-	@use "../../styles/base/typography" as *;
-
+    @use "../../styles/base/typography" as *;
 
     :root {
-        --border-width: 2.222px;
+        --border-width: 1.111px;
 
-        @include is-phone{
+        @include is-phone {
             --border-width: 1.111px;
         }
     }
 
-	header {
-		max-width: 800px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+    header {
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-		margin: 0 auto;
-		padding: 1.111rem 1.111rem;
+        margin: 0 auto;
+        padding: 0.8rem 1.111rem;
 
-        @include is-phone{
-            padding: 1rem .25rem;
+        @include is-phone {
+            padding: 1rem 0.25rem;
         }
-	}
+    }
 
-	.logo {
-		display: block;
-		text-align: center;
-		margin: 0 auto .333rem;
-	}
+    .logo {
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+        img {
+            height: 2rem;
+            width: auto;
+        }
+    }
 
-	.dark .logo img,
-    [data-theme="dark"] .logo img{
-			filter: invert(100%);
-	}
+    .dark .logo img,
+    [data-theme="dark"] .logo img {
+        filter: invert(100%);
+    }
 
-	.nav-links {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		> a {
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        > a {
             line-height: 122%;
-			color: var(--color-foreground);
-			text-decoration: none;
-			padding: .6rem 1.75rem;
-			margin: 0 -.5rem;
-			border: var(--border-width) solid transparent;
-			border-radius: 100%;
-			transition: border 1s ease-out;
-            @media(hover: hover) and (pointer: fine) {
-                &:hover{
+            color: var(--color-foreground);
+            text-decoration: none;
+            padding: 0.6rem 1.75rem;
+            margin: 0 -0.5rem;
+            border: var(--border-width) solid transparent;
+            border-radius: 100%;
+            transition: border 1s ease-out;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
                     border-color: var(--color-foreground);
                 }
             }
 
-			&.active{
+            &.active {
                 border-color: var(--color-foreground);
-			}
-            @include is-phone{
-                margin: 0 -.2rem;
-                padding: .444rem 1rem;
             }
-		}
-	}
+            @include is-phone {
+                margin: 0 -0.2rem;
+                padding: 0.444rem 1rem;
+            }
+        }
+    }
 </style>

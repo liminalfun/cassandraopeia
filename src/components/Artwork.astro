@@ -1,15 +1,16 @@
 ---
-import { Image } from 'astro:assets';
-import { getEntry } from 'astro:content';
+// For Astro Image component, see https://docs.astro.build/en/reference/modules/astro-assets/#responsive-image-properties
+
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
 
 // identify properties that will be passed to this component
 interface Props {
     id: string;
-    collection: keyof import('astro:content').DataEntryMap;
+    collection: keyof import("astro:content").DataEntryMap;
     className: string;
 }
 const { id, collection, className } = Astro.props as Props;
-
 
 // guard getEntry so missing entries don't break the page
 let artEntry = null;
@@ -22,37 +23,42 @@ try {
 // console.log(id);
 ---
 
-{artEntry && (
-    <a class="artwork" class:list={[className]} href={`/${artEntry.collection}/${artEntry.slug}`} data-is-feed-link>
-        <figure>
-            <Image
-                src={artEntry.data.imagePath}
-                alt={artEntry.data.altText}
-                loading="lazy"
-                class="art-img"
-                height={600}
-                widths={[400, 800, 1200]}
-            />
-            <figcaption>
-                <p class="title">{artEntry.data.title}</p>
-                <small class="date">{artEntry.data.date}</small>
-            </figcaption>
-        </figure>
-    </a>
-)}
-
+{
+    artEntry && (
+        <a
+            class="artwork"
+            class:list={[className]}
+            href={`/${artEntry.collection}/${artEntry.slug}`}
+            data-is-feed-link
+        >
+            <figure>
+                <Image
+                    src={artEntry.data.imagePath}
+                    alt={artEntry.data.altText}
+                    loading="lazy"
+                    class="art-img"
+                    height={600}
+                    widths={[400, 800, 1200]}
+                />
+                <figcaption>
+                    <p class="title">{artEntry.data.title}</p>
+                    <small class="date">{artEntry.data.date}</small>
+                </figcaption>
+            </figure>
+        </a>
+    )
+}
 
 <style lang="scss">
-
     @use "../styles/base/vars" as *;
     @use "../styles/base/mixins" as *;
 
-    :root{
+    :root {
         --max-width-featured: calc(100vw - (var(--padding-x) * 2));
         --height-featured: calc(70vh - ((var(--margin-x)) * 2));
     }
-    
-    .artwork{
+
+    .artwork {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -60,7 +66,7 @@ try {
         margin: 0 auto;
         text-decoration: none;
 
-        figure{
+        figure {
             max-width: 100%;
             width: 100%;
             max-height: 100%;
@@ -72,17 +78,17 @@ try {
             display: flex;
             flex-direction: column;
             align-items: center;
-            
-            @media(hover: hover) and (pointer: fine) {
-                &:hover{
-                    figcaption{
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    figcaption {
                         opacity: 1;
                     }
                 }
             }
         }
 
-        img{
+        img {
             display: block;
             object-fit: contain;
             width: 100%;
@@ -91,58 +97,54 @@ try {
             flex-grow: 1;
         }
 
-        
-        &.is-featured{
-            img{
+        &.is-featured {
+            img {
                 height: var(--height-featured);
                 width: 100%;
                 max-height: 100%;
                 max-width: var(--max-width-featured);
 
-                @media (orientation: portrait){
+                @media (orientation: portrait) {
                     height: auto;
                     max-height: var(--height-featured);
                 }
             }
         }
-        &.is-slide{
-            img{
+        &.is-slide {
+            img {
                 height: 60vh;
                 width: auto;
                 max-width: 100%;
 
-                @include is-max-sm-laptop{
+                @include is-max-sm-laptop {
                     height: 45vh;
                 }
-                @include is-phone{
-                    height: 35vh; 
+                @include is-phone {
+                    height: 35vh;
                 }
-                @include is-mini{
+                @include is-mini {
                     height: 32vh;
                 }
             }
         }
     }
 
-
-    figcaption{
+    figcaption {
         flex-shrink: 4;
         margin-top: 0.5rem;
         align-self: flex-start;
         text-align: left;
         opacity: 0;
-        transition: all .3s .1s ease-in-out;
+        transition: all 0.3s 0.1s ease-in-out;
         max-width: 100%;
         pointer-events: none;
         .title {
-            margin: 0 0 .25em;
+            margin: 0 0 0.25em;
             line-height: 100%;
             max-width: 100%;
         }
         .date {
             margin: 0;
-
         }
     }
-
 </style>
