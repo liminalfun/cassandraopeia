@@ -1,15 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import Slider from '../components/Slider.astro';
-import { dateTimeFormat } from 'astro/dist/core/logger/core';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Slider from "../components/Slider.astro";
+import { dateTimeFormat } from "astro/dist/core/logger/core";
 
 export async function getStaticPaths() {
-  const pages = await getCollection('page');
-  return pages.map(page => ({
-    params: { page: page.slug },
-    props: { page },
-  }));
+    const pages = await getCollection("page");
+    return pages.map((page) => ({
+        params: { page: page.slug },
+        props: { page },
+    }));
 }
 
 const { page } = Astro.props;
@@ -19,7 +19,7 @@ const { Content } = await page.render();
 // TODO add prop for page.data.collection to reference 'art' or another folder (default to art)
 // TODO const collection and reference in filter to get an array of name, collection to use in slider prop as "posts"!
 
-const collection = page.data.collection || 'art';
+const collection = page.data.collection || "art";
 const tag = page.data.tag || null;
 
 const posts = await getCollection(collection, ({ data }) => {
@@ -31,36 +31,44 @@ const posts = await getCollection(collection, ({ data }) => {
 // console.log(posts);
 
 function checkTags(array, value) {
-    return array.some((arrayValue)=> value === arrayValue);
+    return array.some((arrayValue) => value === arrayValue);
 }
 // const filteredPosts = posts.filter((post) => checkTags(post.data.tags, tag));
-
 ---
 
-<Layout title={page.data.title} description={page.data.description} share_image={page.data.share_image}>
-  <article class="page">
-    <h1 class="page-title">{page.data.title}</h1>
+<Layout
+    title={page.data.title}
+    description={page.data.description}
+    share_image={page.data.share_image}
+>
+    <article class="page">
+        <h1 class="page-title">{page.data.title}</h1>
 
-    {page.data.selected_artworks && <Slider posts={ page.data.selected_artworks } class="selected-artworks"/> }
-    <div class="content">
-      <Content />
-    </div>
-  </article>
+        {
+            page.data.selected_artworks && (
+                <Slider
+                    posts={page.data.selected_artworks}
+                    class="selected-artworks"
+                />
+            )
+        }
+        <div class="content">
+            <Content />
+        </div>
+    </article>
 </Layout>
 
 <style lang="scss">
+    @use "../styles/base/vars" as *;
 
-@use "../styles/base/vars" as *;
+    .page {
+        width: 100%;
+        &-title {
+            padding: 0 var(--padding-x);
+        }
+    }
 
-.page {
-    width: 100%;
-    &-title{
+    .content {
         padding: 0 var(--padding-x);
-    }  
-}
-
-.content{
-    padding: 0 var(--padding-x);
-}
-
+    }
 </style>

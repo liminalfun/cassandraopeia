@@ -58,6 +58,9 @@
     line-height: 117%;
     font-weight: normal;
     @include is-max-tablet {
+        font-size: 2rem;
+    }
+    @include is-phone {
         font-size: 1.5rem;
     }
 }
@@ -66,7 +69,7 @@
     line-height: 117%;
     font-weight: normal;
 
-    @include is-max-tablet {
+    @include is-phone {
         font-size: 1.25rem;
     }
 }
@@ -75,8 +78,8 @@
     line-height: 117%;
     font-weight: normal;
 
-    @include is-max-tablet {
-        font-size: 1rem;
+    @include is-phone {
+        font-size: 1.111rem;
     }
 }
 @mixin text-h4 {
