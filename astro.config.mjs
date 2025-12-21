@@ -8,7 +8,7 @@ import mdx from "@astrojs/mdx";
 import favicons from "astro-favicons";
 
 export default defineConfig({
-    site: "https://cassandraopeia.liminalcareshiatsu.com",
+    site: "https://cassandraopeia.com",
     prefetch: true,
     redirects: {
         // '/blog/[...slug]': '/writing/[...slug]'
