@@ -94,7 +94,8 @@ const astroSwiperOptions: AstroSwiperType = {
         min-height: 0;
         min-width: 0;
         @media (hover: hover) and (pointer: fine) {
-            &:hover > .swiper-slide:not(:hover) {
+            &:hover > .swiper-slide:not(:hover),
+            &:hover > .swiper-slide-visible:not(.swiper-slide-fully-visible) {
                 opacity: 0.5;
             }
         }
@@ -122,7 +123,8 @@ const astroSwiperOptions: AstroSwiperType = {
         .swiper-slide-prev {
             opacity: 0.5;
         }
-        .swiper-slide-active {
+        .swiper-slide-active,
+        .swiper-slide-fully-visible {
             opacity: 1;
         }
     }

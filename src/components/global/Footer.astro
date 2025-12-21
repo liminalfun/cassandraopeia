@@ -4,9 +4,13 @@ const year = new Date().getFullYear();
 
 <footer>
     <div class="footlinx">
+        <span class="separator">𓂃⋆ * ☄ 𓇬</span>
         <a href="/">cassandraopeia</a>
+        <span class="separator">𓋼𓍊 ❧ 𓍢ִ໋ .☘︎ ݁ </span>
         <a href="/contact">contact</a>
+        <span class="separator"> 𓏲 ◌°☽ ⋆. </span>
         <a href="https://instagram.com/casi.ta" target="_blank">instagram</a>
+        <span class="separator">𓇬 ☄ * ⋆𓂃</span>
     </div>
 
     <p class="copyright">
@@ -63,13 +67,21 @@ const year = new Date().getFullYear();
     .footlinx {
         display: flex;
         flex-wrap: wrap;
-        gap: 2.5rem;
+        gap: 1.444rem;
+
+        .separator {
+            font-size: 0.7em;
+        }
 
         @include is-phone {
             width: 100%;
             flex-direction: column;
             gap: 0.25em;
             @include text-small;
+
+            .separator {
+                display: hidden;
+            }
         }
     }
 </style>
