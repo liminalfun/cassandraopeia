@@ -1,66 +1,79 @@
 ---
 // Homepage layout
 
-import Layout from '../layouts/Layout.astro';
-import Artwork from '../components/Artwork.astro';
-import Slider from '../components/Slider.astro';
-import { getEntry, getCollection, getEntries } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import Artwork from "../components/Artwork.astro";
+import Slider from "../components/Slider.astro";
+import { getEntry, getCollection, getEntries } from "astro:content";
 
-
-const home = await getEntry('page', 'home');
+const home = await getEntry("page", "home");
 const { Content } = await home.render();
 ---
 
-<Layout title={home.data.title} description={home.data.description}, share_image={home.data.share_image}>
-	<main class="site home">
-		<div class="featured-image">
-			{home.data.featured_image && <Artwork
-                id={home.data.featured_image.id}
-                collection={home.data.featured_image.collection}
-                className="is-featured"
-			/>}
-		</div>
-		<div class="content">
-			<Content />
-            
-            {home.data.selected_artworks && <Slider posts={home.data.selected_artworks} />}
-		</div>
-	</main>
+<Layout
+    title={home.data.title}
+    description={home.data.description}
+    ,
+    share_image={home.data.share_image}
+>
+    <main class="site home">
+        <div class="featured-image">
+            {
+                home.data.featured_image && (
+                    <Artwork
+                        id={home.data.featured_image.id}
+                        collection={home.data.featured_image.collection}
+                        className="is-featured"
+                    />
+                )
+            }
+        </div>
+        {
+            home.data.selected_artworks && (
+                <Slider posts={home.data.selected_artworks} />
+            )
+        }
+        <div class="content">
+            <Content />
+        </div>
+    </main>
 </Layout>
 
 <style lang="scss">
-
-	@use "../styles/base/vars" as *;
+    @use "../styles/base/vars" as *;
     @use "../styles/base/mixins" as *;
 
-    :root{
+    :root {
         --height: calc(90vh - ((var(--margin-x)) * 2));
     }
-	.site{
-		text-align: center;
-	}
+    .site {
+        text-align: center;
+    }
 
-	.featured-image{
+    .featured-image {
         max-height: var(--height);
         padding: 0 var(--padding-x);
-		padding-bottom: var(--padding-y);
+        padding-bottom: var(--padding-y);
         display: flex;
         margin: 0 auto;
-        animation: .5s ease-in 1 fadeIn;
+        animation: 0.5s ease-in 1 fadeIn;
 
-        @include is-phone{
-            padding-top: .5rem;
+        @include is-phone {
+            padding-top: 0.5rem;
             margin-bottom: 2rem;
         }
     }
 
     @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1;}
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 
-	.content{
-		text-align: center; 
-	}
-
+    .content {
+        text-align: center;
+    }
 </style>

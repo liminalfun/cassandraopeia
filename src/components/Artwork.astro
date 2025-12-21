@@ -152,5 +152,12 @@ try {
         .date {
             margin: 0;
         }
+
+        @media (hover: none) {
+            display: none;
+        }
+        @include is-phone {
+            display: none;
+        }
     }
 </style>
