@@ -2,7 +2,8 @@
 // Components
 import Head from "../components/global/Head.astro";
 import ColorModeToggle from "../components/global/ColorModeToggle.astro";
-import Footer from "../components/global/Footer.astro";
+import logo from "../images/global/cassandraopeia.png";
+import { Image } from "astro:assets";
 
 interface Props {
     title: string;
@@ -21,11 +22,10 @@ import "../styles/style.scss";
     <Head title={title} description={description} share_image={share_image} />
     <body>
         <header>
-            <a class="close" href="/" data-back-to-home
-                >close<a></a>
-                <ColorModeToggle />
-            </a>
+            <a class="close" href="/" data-back-to-home>Back</a>
+            <ColorModeToggle />
         </header>
+
         <main class="site">
             <slot transition:animate="fade" />
         </main>
@@ -97,19 +97,26 @@ import "../styles/style.scss";
         margin: 0;
     }
     header {
-        position: fixed;
-        top: 1rem;
-        right: 3rem;
-        z-index: 1;
+        display: flex;
+        justify-content: center;
+        padding: 1rem 1.111rem 0;
 
-        .close {
-            text-decoration: none;
-            padding: 0.5rem;
-            cursor: pointer;
-            @media (hover: hover) and (pointer: fine) {
-                &:hover {
-                    text-decoration: underline;
-                }
+        @include is-phone {
+            padding: 1rem 0.25rem;
+        }
+    }
+    .close {
+        position: fixed;
+        top: 0.555rem;
+        // right: 3rem;
+        left: 1rem;
+        z-index: 1;
+        text-decoration: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                text-decoration: underline;
             }
         }
     }
