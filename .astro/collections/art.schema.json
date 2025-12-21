@@ -31,6 +31,9 @@
         "medium": {
           "type": "string"
         },
+        "dimensions": {
+          "type": "string"
+        },
         "backgroundColor": {
           "type": "string"
         },

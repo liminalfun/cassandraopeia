@@ -1,67 +1,76 @@
 ---
 // Components
-import Head from '../components/global/Head.astro';
-import ColorModeToggle from '../components/global/ColorModeToggle.astro';
-
+import Head from "../components/global/Head.astro";
+import ColorModeToggle from "../components/global/ColorModeToggle.astro";
+import Footer from "../components/global/Footer.astro";
 
 interface Props {
-	title: string;
-	description: string;
-	share_image: string;
+    title: string;
+    description: string;
+    share_image: string;
 }
-
+const year = new Date().getFullYear();
 
 const { title, description, share_image } = Astro.props;
 
-import '../styles/style.scss';
+import "../styles/style.scss";
 ---
 
-<!doctype html><html lang="en" transition:animate="none">
-	<Head title={title} description={description} share_image={share_image}/>
-	<body>
+<!doctype html>
+<html lang="en" transition:animate="none">
+    <Head title={title} description={description} share_image={share_image} />
+    <body>
         <header>
-            <a class="close" href="/" data-back-to-home>close<a/>
-            <ColorModeToggle />
+            <a class="close" href="/" data-back-to-home
+                >close<a></a>
+                <ColorModeToggle />
+            </a>
         </header>
-		<slot  transition:animate="fade" />
-	</body>
+        <main class="site">
+            <slot transition:animate="fade" />
+        </main>
+        <footer>
+            <p class="copyright">
+                &copy; Cassandra Tankó, {year}
+            </p>
+        </footer>
+    </body>
 </html>
 
 <script>
-
-    function goBack (e) {
+    function goBack(e) {
         if (history.length > 1) {
-				e.preventDefault()
-				history.back()
-			} else {
-                e.preventDefault();
-                document.location.href = "/";
+            e.preventDefault();
+            history.back();
+        } else {
+            e.preventDefault();
+            document.location.href = "/";
         }
     }
 
     document.addEventListener("astro:page-load", () => {
-        const backButton = document.querySelector('[data-back-to-home]');
-        document.body.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
+        const backButton = document.querySelector("[data-back-to-home]");
+        document.body.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
                 goBack(e);
             }
         });
 
-        backButton?.addEventListener('click', (e) => {
+        backButton?.addEventListener("click", (e) => {
             goBack(e);
         });
     });
-    
+
     // import { supportsViewTransitions } from 'astro:transitions/client';
-	// if (supportsViewTransitions) {
-	// 	document.addEventListener('astro:page-load', callback)
-	// } else {
-	// 	callback()
-	// }
-	// function callback() {
-	// 	const backButton = document.querySelector('[data-back-to-home]');
-	// 	const fromFeed = localStorage.getItem('cameFromFeed')
-	// 	localStorage.removeItem('cameFromFeed')
+    // if (supportsViewTransitions) {
+    // 	document.addEventListener('astro:page-load', callback)
+    // } else {
+    // 	callback()
+    // }
+    // function callback() {
+    // 	const backButton = document.querySelector('[data-back-to-home]');
+    // 	const fromFeed = localStorage.getItem('cameFromFeed')
+    // 	localStorage.removeItem('cameFromFeed')
 
     //     document.body.addEventListener('keydown', (e) => {
     //         console.log(e);
@@ -70,35 +79,54 @@ import '../styles/style.scss';
     //         }
     //     });
 
-	// 	backButton?.addEventListener('click', (e) => {
-	// 		goBack(e);
-	// 	})
-	// }
+    // 	backButton?.addEventListener('click', (e) => {
+    // 		goBack(e);
+    // 	})
+    // }
 </script>
 
-
 <style lang="scss">
+    @use "../styles/base/vars" as *;
+    @use "../styles/base/mixins" as *;
+    @use "../styles/base/typography" as *;
 
-@use "../styles/base/vars" as *;
-@use "../styles/base/mixins" as *;
-@use "../styles/base/typography" as *;
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+    header {
+        position: fixed;
+        top: 1rem;
+        right: 3rem;
+        z-index: 1;
 
-header{
-	position: fixed;
-	top: 1rem;
-	right: 3rem;
-    z-index: 1;
-
-	.close{
-		text-decoration: none;
-        padding: .5rem;
-        cursor: pointer;
-        @media(hover: hover) and (pointer: fine) {
-            &:hover{
-                text-decoration: underline;
+        .close {
+            text-decoration: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
-	}
-}
-	 
+    }
+
+    footer {
+        // height: 100%;
+        // margin-top: auto;
+        flex: 1 0 auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: 0 1rem;
+        text-align: right;
+        .copyright {
+            @include text-small;
+            opacity: 0.5;
+            margin-bottom: 0.333em;
+        }
+    }
 </style>

@@ -25,6 +25,7 @@ const artCollection = defineCollection({
             tags: z.array(z.string()).optional(),
             sortOrder: z.number().optional(),
             medium: z.string().optional(),
+            dimensions: z.string().optional(),
             backgroundColor: z.string().optional(),
         }),
 });

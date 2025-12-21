@@ -20,7 +20,7 @@ const { Content } = await render(post);
     description={post.data.description}
     share_image={post.data.imagePath}
 >
-    <article class="site art" data-background-color={post.data.backgroundColor}>
+    <article class="art" data-background-color={post.data.backgroundColor}>
         <div class="artwork-caption">
             <p class="artist-name">Cassandra</p>
             <h1 class="artwork-heading">
@@ -35,13 +35,20 @@ const { Content } = await render(post);
                     <small class="artwork-medium">{post.data.medium}</small>
                 )
             }
+            {
+                post.data.dimensions && (
+                    <small class="artwork-dimensions">
+                        {post.data.dimensions}
+                    </small>
+                )
+            }
         </div>
 
         <Image
             class="artwork-image"
             src={post.data.imagePath}
             alt={post.data.altText}
-            widths={[400, 800, 1200]}
+            widths={[777, 1111, 1600]}
             sizes="(max-width: 600px) 100vw, (max-width: 1200px) 90vw, 90vw"
         />
         <div class="artwork-spacer"></div>
@@ -79,12 +86,13 @@ const { Content } = await render(post);
         --height: calc(100vh - ((var(--padding-y) + var(--margin-x)) * 2));
         --max-width: calc(100vw - (12.5rem + var(--column-gap)));
     }
-    .site.art {
+    .site .art {
         max-width: 100%;
+        min-height: var(--height);
         display: flex;
         flex-direction: column;
         margin: var(--margin-x);
-        padding-top: var(--padding-y);
+        padding-top: 1.333rem;
     }
 
     .artwork {
@@ -96,28 +104,34 @@ const { Content } = await render(post);
             order: 2;
             > *:not(small) {
                 margin: 0;
-                @include text-h3;
+                // @include text-h3;
             }
             .artist-name {
                 font-weight: bold;
+                text-transform: uppercase;
+                margin-bottom: 0.333em;
             }
         }
         &-heading {
             margin-top: 0.111em;
+            @include text-h3;
         }
         &-title {
             font-style: italic;
+            font-weight: bold;
         }
-        &-medium {
-            margin-top: 0.777em;
+        &-medium,
+        &-dimensions {
+            margin-top: 0.777rem;
             @include text-small;
-            opacity: 0.777;
-            font-style: italic;
+        }
+        &-dimensions {
+            margin-top: 0.111rem;
         }
     }
 
     .artwork-image {
-        margin: 0;
+        margin: 0.777rem 0 0;
         display: block;
         width: 100%;
         height: 100%;
@@ -137,21 +151,22 @@ const { Content } = await render(post);
     }
 
     @media screen and (min-width: 1024px) {
-        .site.art {
+        .site .art {
             flex-direction: row;
             align-items: flex-end;
         }
         .artwork {
             &-caption {
-                flex-basis: 20%;
+                flex: 2 1 20%;
                 order: 0;
             }
             &-image {
-                flex-basis: 80%;
-                height: var(--height);
+                flex: 3 1 auto;
+                max-height: var(--height);
+                margin-top: 0;
             }
             &-spacer {
-                flex-basis: 10%;
+                flex: 0 0 auto;
             }
         }
     }
