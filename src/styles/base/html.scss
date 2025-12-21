@@ -72,6 +72,12 @@ h2,
 .heading-2 {
     margin: 0.1875em 0 0.5rem;
     @include text-h2;
+    img {
+        height: 2.333em;
+        width: auto;
+        padding: 0.5em 0 0;
+        margin-bottom: -0.777em;
+    }
 }
 h3,
 .heading-3 {
@@ -120,6 +126,16 @@ a {
     strong {
         font-weight: 600;
     }
+    .image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+.content,
+.page-title {
+    max-width: var(--main-max-width);
+    margin-right: auto;
+    margin-left: auto;
 }
 
 // media -----------------------------------------------------------------------

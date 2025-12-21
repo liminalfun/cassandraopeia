@@ -9,10 +9,8 @@ import favicons from "astro-favicons";
 
 export default defineConfig({
     site: "https://cassandraopeia.com",
-    prefetch: true,
-    redirects: {
-        // '/blog/[...slug]': '/writing/[...slug]'
+    prefetch: {
+        prefetchAll: true,
     },
-
     integrations: [mdx(), sitemap(), favicons()],
 });

@@ -51,6 +51,7 @@ function checkTags(array, value) {
                         class="page-title"
                         height="60"
                         densities={[1.5, 2]}
+                        loading="eager"
                     />
                 ) : (
                     page.data.title
@@ -79,10 +80,11 @@ function checkTags(array, value) {
         width: 100%;
         &-title {
             padding: 0 var(--padding-x);
+            margin-bottom: 0;
             img {
                 height: 1.5em;
                 width: auto;
-                padding-top: 0.5em;
+                padding: 0.5em 0 0;
             }
         }
     }

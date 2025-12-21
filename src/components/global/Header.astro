@@ -58,9 +58,12 @@ import logo from "../../images/global/cassandraopeia.png";
         }
     }
 
-    .dark .logo img,
-    [data-theme="dark"] .logo img {
-        filter: invert(100%);
+    .dark,
+    [data-theme="dark"] {
+        .page-title img,
+        .logo img {
+            filter: invert(100%);
+        }
     }
 
     .nav-links {

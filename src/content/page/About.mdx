@@ -2,13 +2,19 @@
 title: About
 description: About Cassandraopeia and visual artist Cassandra Tankó
 title_image: "../../images/titles/about.png"
-headings:
-    - "../../images/titles/biography.png"
-    - "../../images/titles/artist's statement.png"
-    - "../../images/titles/cv.png"
 ---
 
-## Biography
+import { Image } from "astro:assets";
+import photo from "../../images/photos/cassandra artist photo cassandraopeia- photo credit Alex Coma.jpeg";
+import biography from "../../images/titles/biography.png";
+import statement from "../../images/titles/artist's statement.png";
+import cv from "../../images/titles/cv.png";
+
+<Image src={photo} alt="Cassandra artist photo" width="1200" class="image" />
+
+<h2 class="heading-2 page-title">
+    <Image src={biography} alt="Biography" />
+</h2>
 
 _Cassandraopeia_ is an interdisciplinary project founded and run by Cassandra Tankó (she/they), a Budapest-born Romanian-Canadian visual artist living and working in Tiohtià:ke / Mooniyang / Montréal. Having grown up in Calgary, the winds took her eastward to study at Concordia University where she completed her BFA in Studio Arts in 2018. Since then, she has put down roots here and tends to her practice between home and her studio space in Chabanel. With her artistic inclinations and aesthetic approaches now at a pivotal stage in their development, she plans on furthering education at the Master’s level in Studio Arts with a concentration in drawing and painting.
 
@@ -17,7 +23,9 @@ The project _Cassandraopeia_ birthed into existence in late 2025 after years and
 In addition to her expertise in the visual arts, Cassandra also has strong knowledge of and dedicated passion for herbalism, astrology, tarot, crystal healing, symbolism, and dreams. Her highly developed sensitivity and intuition guides her to learn of various analogous esoteric specialties throughout life. Some she takes keen interest in are breathwork, somatics, yoga, meditation, reiki, and sound healing. Other activities she enjoys thoroughly are hiking, cycling, alpine skiing, singing, reading, playing the piano, and pressing flowers. Every one of these fascinations speaks directly to her artistic practice, shaping the lens through which she sees the world and distills her understanding of reality through creation.
 
 <br />
-## Artist statement
+<h2 class="heading-2 page-title">
+    <Image src={statement} alt="Artist's statement" />
+</h2>
 
 Moved by magic realism, nuance, energy, symbolism, interconnectivity, and spirituality, I aim to offer visionary windows into a spatial awareness of these guiding intimations. I shape creative impulses into a personal devotion to life as art, art as life, and offer my innermost reflections upon existence through drawing and painting. By receiving impressions drawn through the senses from natural and esoteric sources, I act as a channel for what sensitive essences come through. I carefully observe, touch, hold, listen, sense, witness, intuit, divine, and glean. From this ritualized way of being my visions emerge, manifest, and realize their destinies, interweaving symbols, colours, patterns, and contrasts together in harmonized unity.
 
@@ -26,7 +34,9 @@ My practice takes root in a rich inner landscape forged in honour of light, shad
 I create to surface nearer and dive deeper, to journey beyond and come back home, as a means to evoke the many mysteries of being.
 
 <br />
-## CV
+<h2 class="heading-2 page-title">
+    <Image src={cv} alt="CV" />
+</h2>
 
 _CASSANDRA TANKÓ_
 
@@ -72,5 +82,7 @@ Lives and works in Tiohtià:ke / Mooniyang / Montréal, Canada
 
 <br />
 ## Credits
+
+Photo of Cassandra taken by Alex Coma.
 
 Website design & development by [Alex Nawotka](https://alexnawotka.com) with Astro.js and heart full of love.

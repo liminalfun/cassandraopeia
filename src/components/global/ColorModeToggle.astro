@@ -7,7 +7,12 @@ import sun from "../../images/global/sun.png";
 const { className } = Astro.props;
 ---
 
-<div id="themeToggle" class:list={[className]} transition:persist>
+<a
+    id="themeToggle"
+    class:list={[className]}
+    transition:persist
+    title="light/dark mode"
+>
     <Image
         id="sun"
         class="sun"
@@ -28,62 +33,62 @@ const { className } = Astro.props;
         height="40"
         quality="max"
     />
-    <div></div>
+</a>
 
-    <script>
-        document.getElementById("sun")?.addEventListener("click", () => {
-            document.dispatchEvent(
-                new CustomEvent("set-theme", { detail: "light" })
-            );
-            console.log("set to light");
-        });
-        document.getElementById("moon")?.addEventListener("click", () => {
-            document.dispatchEvent(
-                new CustomEvent("set-theme", { detail: "dark" })
-            );
-            console.log("set to dark");
-        });
-    </script>
+<script>
+    document.getElementById("sun")?.addEventListener("click", () => {
+        document.dispatchEvent(
+            new CustomEvent("set-theme", { detail: "light" })
+        );
+        console.log("set to light");
+    });
+    document.getElementById("moon")?.addEventListener("click", () => {
+        document.dispatchEvent(
+            new CustomEvent("set-theme", { detail: "dark" })
+        );
+        console.log("set to dark");
+    });
+</script>
 
-    <style is:global lang="scss">
-        #themeToggle {
-            position: fixed;
-            top: 0.6rem;
-            right: 0.6rem;
-            width: 2.222rem;
-            height: 2.222rem;
-            &:hover {
-                cursor: pointer;
-            }
-            .moon,
-            .sun {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 100%;
-                height: 100%;
-            }
-            &.flex-item {
-                position: relative !important;
-                top: 0;
-                right: 0;
-                display: block;
-            }
+<style is:global lang="scss">
+    #themeToggle {
+        position: fixed;
+        top: 0.6rem;
+        right: 0.6rem;
+        width: 2.222rem;
+        height: 2.222rem;
+        &:hover {
+            cursor: pointer;
         }
-
-        .moon {
-            opacity: 1;
+        .moon,
+        .sun {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            color: var(--background-color);
+        }
+        &.flex-item {
+            position: relative !important;
+            top: 0;
+            right: 0;
             display: block;
         }
-        .sun {
-            opacity: 0;
-            display: none;
+    }
+
+    .moon {
+        opacity: 1;
+        display: block;
+    }
+    .sun {
+        opacity: 0;
+        display: none;
+    }
+    #themeToggle {
+        @media screen and (max-width: 700px) {
+            width: 2rem;
+            height: 2rem;
         }
-        #themeToggle {
-            @media screen and (max-width: 700px) {
-                width: 2rem;
-                height: 2rem;
-            }
-        }
-    </style>
-</div>
+    }
+</style>
