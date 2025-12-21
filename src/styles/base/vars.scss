@@ -2,7 +2,7 @@
 // Set your color palette here
 :root {
     --color-dark-primary: #0f0f0f;
-    --color-dark-secondary: #000000;
+    --color-dark-secondary: #122227;
     --color-light-primary: #f3f3f3;
     --color-light-secondary: #fdfdfd;
     --color-accent-1: #70b1ec;
@@ -10,7 +10,7 @@
     --color-accent-3: #346a9c;
 
     --color-background: var(--color-light-secondary);
-    --color-foreground: var(--color-dark-primary);
+    --color-foreground: var(--color-dark-secondary);
     --color-link: #0e41a5;
 
     color-scheme: dark light;

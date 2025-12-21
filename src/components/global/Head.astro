@@ -1,61 +1,58 @@
 ---
 import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
-import Themes from 'astro-themes';
+import Themes from "astro-themes";
 import { ContentSchemaContainsSlugError } from "astro/dist/core/errors/errors-data";
 
 interface Props {
-	title: string;
-	description: string;
-	share_image: string;
+    title: string;
+    description: string;
+    share_image: string;
 }
 
-
 const { title, description, share_image } = Astro.props;
-
 ---
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<link rel="sitemap" href="/sitemap-index.xml"/>
-	<meta name="generator" content={Astro.generator} />
-    <Themes />
-	<SEO
-		title={`${title} | Cassandraopeia`}
-		description={description}
-		openGraph={{
-			basic: {
-			title: `${title}`,
-			type: "website",
-			image: `${share_image}`,
-			url: `${Astro.url}`
-			},
-			optional: {
-				locale: "en",
-			}
-	}}
-	extend={{
-		link: [{ rel: "icon", href: "cassandraopeia/favicon.ico" }],
-		meta: [
-		{
-			name: "twitter:image",
-			// content: `${settings.data.share_image}`,
-		}
-		],
-	}}
-	/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <Themes defaultTheme="light" />
+    <SEO
+        title={`${title} | Cassandraopeia`}
+        description={description}
+        openGraph={{
+            basic: {
+                title: `${title}`,
+                type: "website",
+                image: `${share_image}`,
+                url: `${Astro.url}`,
+            },
+            optional: {
+                locale: "en",
+            },
+        }}
+        extend={{
+            link: [{ rel: "icon", href: "cassandraopeia/favicon.ico" }],
+            meta: [
+                {
+                    name: "twitter:image",
+                    // content: `${settings.data.share_image}`,
+                },
+            ],
+        }}
+    />
     <ClientRouter />
 </head>
 
-
 <script>
-	const feedLinks = document.querySelectorAll('[data-is-feed-link]')
-	
-	feedLinks.forEach((feedLink) => {
-		feedLink?.addEventListener('click', () => {
-			localStorage.setItem('cameFromFeed', 'true')
-		})
-	})
+    const feedLinks = document.querySelectorAll("[data-is-feed-link]");
+
+    feedLinks.forEach((feedLink) => {
+        feedLink?.addEventListener("click", () => {
+            localStorage.setItem("cameFromFeed", "true");
+        });
+    });
 </script>
