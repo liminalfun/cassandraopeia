@@ -42,9 +42,7 @@
         }
       },
       "required": [
-        "title",
-        "imagePath",
-        "altText"
+        "title"
       ],
       "additionalProperties": false
     }
