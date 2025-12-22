@@ -18,6 +18,8 @@ const { Content } = await page.render();
 const optimizedShareImage = await getImage({
     src: page.data.share_image,
     width: 1200,
+    height: 630,
+    fit: "contain",
     format: "jpg",
 });
 

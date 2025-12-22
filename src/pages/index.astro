@@ -13,6 +13,8 @@ const { Content } = await home.render();
 const optimizedShareImage = await getImage({
     src: home.data.share_image,
     width: 1200,
+    height: 630,
+    fit: "contain",
     format: "jpg",
 });
 
@@ -22,7 +24,6 @@ const share_image = Astro.url.origin + optimizedShareImage.src;
 <Layout
     title={home.data.title}
     description={home.data.description}
-    ,
     share_image={share_image}
 >
     <main class="site home">
