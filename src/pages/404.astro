@@ -1,0 +1,26 @@
+---
+// 404 page layout
+
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Page not found"
+    description="Page not found"
+    share_image="https://cassandraopeia.com/_astro/cassandraopeia_%202025.DpiDbhWB_ZV8imh.jpg"
+>
+    <main class="site page">
+        <div class="content">
+            <h1>
+                You have landed in the abyss. <br /><a href="/">Return home.</a>
+            </h1>
+        </div>
+    </main>
+</Layout>
+
+<style lang="scss">
+    @use "../styles/base/vars" as *;
+    .content {
+        padding: var(--padding-x);
+    }
+</style>

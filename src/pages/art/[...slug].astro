@@ -23,11 +23,13 @@ const optimizedShareImage = await getImage({
 });
 
 const share_image = Astro.url.origin + optimizedShareImage.src;
+
+const description = post.data.title + (post.data.date && ", " + post.data.date);
 ---
 
 <Overlay
     title={post.data.title}
-    description={post.data.description}
+    description={post.data.description || description}
     share_image={share_image}
 >
     <article class="art" data-background-color={post.data.backgroundColor}>
