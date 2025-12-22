@@ -3,7 +3,7 @@ import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
 import Themes from "astro-themes";
 import { ContentSchemaContainsSlugError } from "astro/dist/core/errors/errors-data";
-import { getImage } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 
 interface Props {
     title: string;
@@ -13,13 +13,15 @@ interface Props {
 
 const { title, description, share_image } = Astro.props;
 
-const optimizedShareImage = await getImage({
-    src: share_image,
-    width: 1200,
-    format: "jpg",
-});
+// console.log(share_image);
 
-const shareImageURL = Astro.url.origin + optimizedShareImage.src;
+// const optimizedShareImage = await getImage({
+//     src: share_image,
+//     width: 1200,
+//     format: "jpg",
+// });
+
+// const shareImageURL = Astro.url.origin + optimizedShareImage.src;
 ---
 
 <head>
@@ -36,7 +38,7 @@ const shareImageURL = Astro.url.origin + optimizedShareImage.src;
             basic: {
                 title: `${title}`,
                 type: "website",
-                image: `${shareImageURL}`,
+                image: `${share_image}`,
                 url: `${Astro.url}`,
             },
             optional: {

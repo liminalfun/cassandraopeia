@@ -5,16 +5,25 @@ import Layout from "../layouts/Layout.astro";
 import Artwork from "../components/Artwork.astro";
 import Slider from "../components/Slider.astro";
 import { getEntry, getCollection, getEntries } from "astro:content";
+import { getImage } from "astro:assets";
 
 const home = await getEntry("page", "home");
 const { Content } = await home.render();
+
+const optimizedShareImage = await getImage({
+    src: home.data.share_image,
+    width: 1200,
+    format: "jpg",
+});
+
+const share_image = Astro.url.origin + optimizedShareImage.src;
 ---
 
 <Layout
     title={home.data.title}
     description={home.data.description}
     ,
-    share_image={home.data.share_image}
+    share_image={share_image}
 >
     <main class="site home">
         <div class="featured-image">

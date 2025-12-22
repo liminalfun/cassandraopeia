@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Slider from "../components/Slider.astro";
 
@@ -14,6 +14,14 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { Content } = await page.render();
+
+const optimizedShareImage = await getImage({
+    src: page.data.share_image,
+    width: 1200,
+    format: "jpg",
+});
+
+const share_image = Astro.url.origin + optimizedShareImage.src;
 
 // TODO const tag  from page.data.tags to use as a filter
 // TODO add prop for page.data.collection to reference 'art' or another folder (default to art)
@@ -39,7 +47,7 @@ function checkTags(array, value) {
 <Layout
     title={page.data.title}
     description={page.data.description}
-    share_image={page.data.share_image}
+    share_image={share_image}
 >
     <article class="page">
         <h1 class="page-title">
